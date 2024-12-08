@@ -10,7 +10,7 @@ public abstract class ChipBase implements Chip {
   private ChipCoordinate coordinate;
 
   public ChipBase(ChipImage image, ChipCoordinate coordinate) {
-    this.image = Objects.requireNonNull(image);
+    this.image = checkChipImage(image);
     this.coordinate = Objects.requireNonNull(coordinate);
   }
 
@@ -41,5 +41,16 @@ public abstract class ChipBase implements Chip {
 
   protected ChipCoordinate computeCoordinate(UnaryOperator<ChipCoordinate> operator) {
     return coordinate = operator.apply(coordinate);
+  }
+
+  private ChipImage checkChipImage(ChipImage image) {
+    Objects.requireNonNull(image);
+
+    if (image.length() != this.length()) {
+      throw new IllegalArgumentException(
+          String.format("expected image size <%s>, but got <%s>", this.length(), image.length()));
+    }
+
+    return image;
   }
 }

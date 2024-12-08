@@ -21,4 +21,9 @@ final class CharaChipImage implements ChipImage {
   public void draw(Graphics g, int x, int y) {
     g.drawImage(image, x, y, null);
   }
+
+  @Override
+  public int length() {
+    return (image.getWidth(null) + image.getHeight(null)) / 2;
+  }
 }
