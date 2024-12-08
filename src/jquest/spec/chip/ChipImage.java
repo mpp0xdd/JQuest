@@ -1,4 +1,4 @@
-package jquest.spec.chip.image;
+package jquest.spec.chip;
 
 import java.awt.Graphics;
 

@@ -1,16 +1,18 @@
 package jquest.spec.map;
 
+import java.util.Objects;
 import jquest.spec.chip.Chip;
 import jquest.spec.chip.ChipBase;
 import jquest.spec.chip.ChipCoordinate;
+import jquest.spec.chip.ChipImage;
 
 public abstract class RpgMapConcernChipBase extends ChipBase implements RpgMapConcern, Chip {
 
   private RpgMap rpgMap;
 
-  public RpgMapConcernChipBase(String name, RpgMap rpgMap, ChipCoordinate coordinate) {
-    super(name, coordinate);
-    this.rpgMap = rpgMap;
+  public RpgMapConcernChipBase(ChipImage image, RpgMap rpgMap, ChipCoordinate coordinate) {
+    super(image, coordinate);
+    this.rpgMap = Objects.requireNonNull(rpgMap);
   }
 
   @Override

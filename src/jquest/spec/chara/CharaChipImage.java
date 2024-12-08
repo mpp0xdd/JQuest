@@ -1,18 +1,19 @@
-package jquest.spec.chip.image;
+package jquest.spec.chara;
 
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.Objects;
+import jquest.spec.chip.ChipImage;
 
-final class ChipImageImpl implements ChipImage {
+final class CharaChipImage implements ChipImage {
 
-  public static ChipImageImpl wrap(Image image) {
-    return new ChipImageImpl(image);
+  public static CharaChipImage wrap(Image image) {
+    return new CharaChipImage(image);
   }
 
   private final Image image;
 
-  private ChipImageImpl(Image image) {
+  private CharaChipImage(Image image) {
     this.image = Objects.requireNonNull(image);
   }
 

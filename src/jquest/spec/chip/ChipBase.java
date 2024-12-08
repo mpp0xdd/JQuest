@@ -3,16 +3,14 @@ package jquest.spec.chip;
 import java.awt.Graphics;
 import java.util.Objects;
 import java.util.function.UnaryOperator;
-import jquest.spec.chip.image.ChipImage;
-import jquest.spec.chip.image.ChipImageLoader;
 
 public abstract class ChipBase implements Chip {
 
   private ChipImage image;
   private ChipCoordinate coordinate;
 
-  public ChipBase(String name, ChipCoordinate coordinate) {
-    this.image = ChipImageLoader.getLoader(this).loadChipImage(name);
+  public ChipBase(ChipImage image, ChipCoordinate coordinate) {
+    this.image = Objects.requireNonNull(image);
     this.coordinate = Objects.requireNonNull(coordinate);
   }
 
