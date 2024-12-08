@@ -4,6 +4,8 @@ import jquest.spec.chip.ChipCoordinate;
 
 final class Castle extends RpgMapBase {
 
+  private int[][] mapData;
+
   @Override
   public ChipCoordinate startCoordinate() {
     return ChipCoordinate.at(1, 1);
@@ -11,12 +13,12 @@ final class Castle extends RpgMapBase {
 
   @Override
   public boolean isBlockedOff(ChipCoordinate coordinate) {
-    return mapData()[coordinate.y()][coordinate.x()] == 1;
+    return mapData[coordinate.y()][coordinate.x()] == 1;
   }
 
   @Override
   protected void initialize() {
-    int[][] mapData = mapData();
+    mapData = loadMapData();
     mapChips.clear();
     for (int y = 0; y < mapData.length; y++) {
       for (int x = 0; x < mapData[y].length; x++) {
@@ -26,7 +28,7 @@ final class Castle extends RpgMapBase {
     }
   }
 
-  private int[][] mapData() {
+  private int[][] loadMapData() {
     return new int[][] {
       {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
       {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
