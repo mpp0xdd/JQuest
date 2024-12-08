@@ -10,6 +10,11 @@ final class Castle extends RpgMapBase {
   }
 
   @Override
+  public boolean isBlockedOff(ChipCoordinate coordinate) {
+    return mapData()[coordinate.y()][coordinate.x()] == 1;
+  }
+
+  @Override
   protected void initialize() {
     int[][] mapData = mapData();
     mapChips.clear();

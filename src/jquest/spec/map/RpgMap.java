@@ -11,4 +11,6 @@ public interface RpgMap extends Drawable, Rectangular {
   }
 
   ChipCoordinate startCoordinate();
+
+  boolean isBlockedOff(ChipCoordinate coordinate);
 }
