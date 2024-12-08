@@ -10,6 +10,22 @@ public interface ChipCoordinate {
 
   int y();
 
+  default ChipCoordinate up() {
+    return at(x(), y() - 1);
+  }
+
+  default ChipCoordinate down() {
+    return at(x(), y() + 1);
+  }
+
+  default ChipCoordinate left() {
+    return at(x() - 1, y());
+  }
+
+  default ChipCoordinate right() {
+    return at(x() + 1, y());
+  }
+
   @Override
   int hashCode();
 
