@@ -1,7 +1,7 @@
 package jquest.spec.chara;
 
-import java.awt.Image;
-import jquest.helper.ImageLoader;
+import jglib.image.SpriteSheet;
+import jglib.util.GameUtilities;
 import jquest.spec.action.move.DownMovable;
 import jquest.spec.action.move.LeftMovable;
 import jquest.spec.action.move.RightMovable;
@@ -14,8 +14,10 @@ public interface RpgChara
     extends RpgMapConcern, Chip, UpMovable, DownMovable, LeftMovable, RightMovable {
 
   public static RpgChara mainCharaOf(RpgMap rpgMap) {
-    Image image = ImageLoader.loadImage(RpgChara.class, "image/hero.gif");
-    CharaChipImage charaChipImage = CharaChipImage.wrap(image);
-    return new Hero(charaChipImage, rpgMap, rpgMap.startCoordinate());
+    SpriteSheet spriteSheet =
+        GameUtilities.loadSpriteSheet(RpgChara.class, "image/hero.gif", 32, 32, 1, 2).orElseThrow();
+    spriteSheet.first();
+    HeroImage heroImage = new HeroImage(spriteSheet);
+    return new Hero(heroImage, rpgMap, rpgMap.startCoordinate());
   }
 }
