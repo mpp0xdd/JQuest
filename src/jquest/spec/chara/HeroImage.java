@@ -22,4 +22,8 @@ final class HeroImage implements ChipImage {
   public int length() {
     return (image.width() + image.height()) / 2;
   }
+
+  public void switchDownward() {
+    image.first();
+  }
 }

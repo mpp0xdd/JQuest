@@ -13,4 +13,24 @@ final class Hero extends RpgCharaBase {
   protected HeroImage image() {
     return (HeroImage) super.image();
   }
+
+  @Override
+  public void turnUp() {
+    // TODO
+  }
+
+  @Override
+  public void turnDown() {
+    image().switchDownward();
+  }
+
+  @Override
+  public void turnLeft() {
+    // TODO
+  }
+
+  @Override
+  public void turnRight() {
+    // TODO
+  }
 }
