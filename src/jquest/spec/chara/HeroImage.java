@@ -2,7 +2,7 @@ package jquest.spec.chara;
 
 import java.awt.Graphics;
 import java.util.Objects;
-import jglib.image.SpriteSheet;
+import jglib.util.image.SpriteSheet;
 import jquest.spec.chip.ChipImage;
 
 final class HeroImage implements ChipImage {

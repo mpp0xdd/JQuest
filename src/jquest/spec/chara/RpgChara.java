@@ -1,7 +1,7 @@
 package jquest.spec.chara;
 
-import jglib.image.SpriteSheet;
 import jglib.util.GameUtilities;
+import jglib.util.image.SpriteSheet;
 import jquest.spec.action.move.DownMovable;
 import jquest.spec.action.move.LeftMovable;
 import jquest.spec.action.move.RightMovable;
