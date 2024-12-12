@@ -1,6 +1,7 @@
 package jquest.helper;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -20,6 +21,18 @@ public final class ImageLoader {
 
   public static Image loadImage(Object object, String name) {
     return loadImage(object.getClass(), name);
+  }
+
+  public static BufferedImage loadBufferedImage(URL url) {
+    return (BufferedImage) loadImage(url);
+  }
+
+  public static BufferedImage loadBufferedImage(Class<?> clazz, String name) {
+    return loadBufferedImage(clazz.getResource(name));
+  }
+
+  public static BufferedImage loadBufferedImage(Object object, String name) {
+    return loadBufferedImage(object.getClass(), name);
   }
 
   public static void initialize() {

@@ -2,14 +2,31 @@ package jquest.spec.chara;
 
 import java.awt.Graphics;
 import java.util.Objects;
-import jglib.util.image.SpriteSheet;
+import jglib.util.image.IndexableSpriteSheet;
+import jglib.util.image.IndexableSpriteSheet.Index;
 import jquest.spec.chip.ChipImage;
 
 final class HeroImage implements ChipImage {
 
-  private final SpriteSheet image;
+  enum HeroIndex implements Index {
+    DOWN(1),
+    ;
 
-  public HeroImage(SpriteSheet image) {
+    private final int index;
+
+    private HeroIndex(int index) {
+      this.index = index;
+    }
+
+    @Override
+    public int index() {
+      return index;
+    }
+  }
+
+  private final IndexableSpriteSheet<HeroIndex> image;
+
+  public HeroImage(IndexableSpriteSheet<HeroIndex> image) {
     this.image = Objects.requireNonNull(image);
   }
 
@@ -24,6 +41,6 @@ final class HeroImage implements ChipImage {
   }
 
   public void switchDownward() {
-    image.first();
+    image.setIndex(HeroIndex.DOWN);
   }
 }
