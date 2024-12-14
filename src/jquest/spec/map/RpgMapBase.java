@@ -5,21 +5,34 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
+import jquest.spec.chara.RpgChara;
 import jquest.spec.chip.ChipCoordinate;
 
 abstract class RpgMapBase implements RpgMap {
 
   private final int x, y;
+  private RpgChara mainChara;
   protected final Map<ChipCoordinate, MapChip> mapChips = new HashMap<>();
 
   public RpgMapBase(int x, int y) {
     this.x = x;
     this.y = y;
+    this.mainChara = null;
     initialize();
   }
 
   public RpgMapBase() {
     this(0, 0);
+  }
+
+  @Override
+  public RpgChara getMainChara() {
+    return mainChara;
+  }
+
+  @Override
+  public void setMainChara(RpgChara chara) {
+    mainChara = chara;
   }
 
   @Override
