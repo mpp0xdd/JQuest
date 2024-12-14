@@ -7,8 +7,6 @@ import jquest.spec.chip.ChipCoordinate;
 
 public interface RpgMap extends Drawable, Rectangular {
 
-  interface Viewport extends Drawable, Rectangular, RpgMapConcern {}
-
   public static RpgMap castle() {
     return new Castle();
   }
@@ -20,8 +18,4 @@ public interface RpgMap extends Drawable, Rectangular {
   ChipCoordinate startCoordinate();
 
   boolean isBlockedOff(ChipCoordinate coordinate);
-
-  default Viewport currentViewport() {
-    throw new UnsupportedOperationException();
-  }
 }

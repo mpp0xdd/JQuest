@@ -4,8 +4,11 @@ import java.awt.Graphics;
 import jglib.component.SubGameScreen;
 import jquest.spec.chara.RpgChara;
 import jquest.spec.map.RpgMap;
+import jquest.spec.map.RpgMapConcern;
 
 public interface RpgScene extends SubGameScreen {
+
+  interface Viewport extends SubGameScreen, RpgMapConcern {}
 
   public static RpgScene prologue() {
     RpgSceneImpl scene = new RpgSceneImpl();
