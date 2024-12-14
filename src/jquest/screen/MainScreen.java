@@ -43,7 +43,7 @@ public class MainScreen extends SimpleGameScreen {
               rpgScene.mainChara().foot();
               repaint();
             }));
-    animationRegistry.schedule(MainScreenAnimationName.MAIN_CHARA_WALKING, 0, 300L);
+    animationRegistry.scheduleAnimation(MainScreenAnimationName.MAIN_CHARA_WALKING, 0, 300L);
   }
 
   @Override

@@ -23,7 +23,7 @@ class AnimationRegistry<N extends Enum<N> & AnimationName> {
     return Optional.ofNullable(animationRegistry.get(name));
   }
 
-  public void schedule(N name, long delay, long period) {
+  public void scheduleAnimation(N name, long delay, long period) {
     animationOf(name).orElseThrow().schedule(delay, period);
   }
 }
