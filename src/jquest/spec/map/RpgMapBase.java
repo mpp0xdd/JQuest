@@ -26,6 +26,16 @@ abstract class RpgMapBase implements RpgMap {
   }
 
   @Override
+  public int rows() {
+    return (int) rowMapChipsStream(0).count();
+  }
+
+  @Override
+  public int columns() {
+    return (int) columnMapChipsStream(0).count();
+  }
+
+  @Override
   public RpgChara getMainChara() {
     return mainChara;
   }

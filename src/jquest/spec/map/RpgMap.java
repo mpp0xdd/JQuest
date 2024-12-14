@@ -11,6 +11,10 @@ public interface RpgMap extends Drawable, Rectangular {
     return new Castle();
   }
 
+  int rows();
+
+  int columns();
+
   RpgChara getMainChara();
 
   void setMainChara(RpgChara chara);
