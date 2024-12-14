@@ -3,7 +3,7 @@ package jquest.spec.map;
 import java.awt.Graphics;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Predicate;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import jquest.spec.chara.RpgChara;
 import jquest.spec.chip.ChipCoordinate;
@@ -63,15 +63,17 @@ abstract class RpgMapBase implements RpgMap {
   protected abstract void initialize();
 
   private Stream<MapChip> columnMapChipsStream(int x) {
-    return mapChipsStream(entry -> entry.getKey().x() == x);
+    return IntStream //
+        .range(0, rows())
+        .mapToObj(y -> ChipCoordinate.at(x, y))
+        .map(mapChips::get);
   }
 
   private Stream<MapChip> rowMapChipsStream(int y) {
-    return mapChipsStream(entry -> entry.getKey().y() == y);
-  }
-
-  private Stream<MapChip> mapChipsStream(Predicate<Map.Entry<ChipCoordinate, MapChip>> filter) {
-    return mapChips.entrySet().stream().filter(filter).map(Map.Entry::getValue);
+    return IntStream //
+        .range(0, columns())
+        .mapToObj(x -> ChipCoordinate.at(x, y))
+        .map(mapChips::get);
   }
 
   private Stream<MapChip> mapChipsStream() {
