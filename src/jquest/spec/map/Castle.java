@@ -7,6 +7,16 @@ final class Castle extends RpgMapBase {
   private int[][] mapData;
 
   @Override
+  public int rows() {
+    return mapData.length;
+  }
+
+  @Override
+  public int columns() {
+    return mapData[0].length;
+  }
+
+  @Override
   public ChipCoordinate startCoordinate() {
     return ChipCoordinate.at(1, 1);
   }
@@ -20,8 +30,8 @@ final class Castle extends RpgMapBase {
   protected void initialize() {
     mapData = loadMapData();
     mapChips.clear();
-    for (int y = 0; y < mapData.length; y++) {
-      for (int x = 0; x < mapData[y].length; x++) {
+    for (int y = 0; y < rows(); y++) {
+      for (int x = 0; x < columns(); x++) {
         ChipCoordinate coordinate = ChipCoordinate.at(x, y);
         mapChips.put(coordinate, MapChip.create(toName(mapData[y][x]), this, coordinate));
       }
