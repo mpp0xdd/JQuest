@@ -58,4 +58,8 @@ final class HeroImage implements ChipImage {
   public void switchDownward() {
     image.setIndex(HeroIndex.DOWNWARD_FIRST_STEP);
   }
+
+  public void foot() {
+    image.next();
+  }
 }

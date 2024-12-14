@@ -5,16 +5,21 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Objects;
 import jglib.component.SimpleGameScreen;
+import jquest.screen.AnimationRegistry.AnimationName;
 import jquest.spec.scene.RpgScene;
 
 public class MainScreen extends SimpleGameScreen {
 
+  private enum MainScreenAnimationName implements AnimationName {
+    MAIN_CHARA_WALKING,
+  }
+
   private RpgScene rpgScene;
+  private AnimationRegistry<MainScreenAnimationName> animationRegistry;
 
   public MainScreen(RpgScene rpgScene) {
     this.rpgScene = Objects.requireNonNull(rpgScene);
     setScreenSize(rpgScene.width(), rpgScene.height());
-
     setFocusable(true);
     addKeyListener(
         new KeyAdapter() {
@@ -29,6 +34,16 @@ public class MainScreen extends SimpleGameScreen {
             repaint();
           }
         });
+
+    animationRegistry = new AnimationRegistry<>(MainScreenAnimationName.class);
+    animationRegistry.register(
+        MainScreenAnimationName.MAIN_CHARA_WALKING,
+        new Animation(
+            () -> {
+              rpgScene.mainChara().foot();
+              repaint();
+            }));
+    animationRegistry.schedule(MainScreenAnimationName.MAIN_CHARA_WALKING, 0, 300L);
   }
 
   @Override

@@ -33,4 +33,9 @@ final class Hero extends RpgCharaBase {
   public void turnRight() {
     // TODO
   }
+
+  @Override
+  public void foot() {
+    image().foot();
+  }
 }

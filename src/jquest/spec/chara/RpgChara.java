@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import jglib.util.image.IndexableSpriteSheet;
 import jquest.helper.ImageLoader;
 import jquest.spec.action.move.DownMovable;
+import jquest.spec.action.move.FootStompable;
 import jquest.spec.action.move.LeftMovable;
 import jquest.spec.action.move.RightMovable;
 import jquest.spec.action.move.UpMovable;
@@ -26,7 +27,8 @@ public interface RpgChara
         UpDirectional,
         DownDirectional,
         LeftDirectional,
-        RightDirectional {
+        RightDirectional,
+        FootStompable {
 
   public static RpgChara mainCharaOf(RpgMap rpgMap) {
     BufferedImage image = ImageLoader.loadBufferedImage(RpgChara.class, "image/hero.gif");
