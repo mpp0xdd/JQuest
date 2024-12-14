@@ -2,13 +2,12 @@ package jquest.spec.chara;
 
 import java.util.function.UnaryOperator;
 import jquest.spec.chip.ChipCoordinate;
-import jquest.spec.chip.ChipImage;
 import jquest.spec.map.RpgMap;
 import jquest.spec.map.RpgMapConcernChipBase;
 
 abstract class RpgCharaBase extends RpgMapConcernChipBase implements RpgChara {
 
-  public RpgCharaBase(ChipImage image, RpgMap rpgMap, ChipCoordinate coordinate) {
+  public RpgCharaBase(RpgCharaChipImage image, RpgMap rpgMap, ChipCoordinate coordinate) {
     super(image, rpgMap, coordinate);
   }
 
@@ -34,6 +33,11 @@ abstract class RpgCharaBase extends RpgMapConcernChipBase implements RpgChara {
   public void moveRight() {
     computeCoordinate(ChipCoordinate::right);
     turnRight();
+  }
+
+  @Override
+  protected RpgCharaChipImage image() {
+    return (RpgCharaChipImage) super.image();
   }
 
   @Override

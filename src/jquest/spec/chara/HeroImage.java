@@ -4,9 +4,8 @@ import java.awt.Graphics;
 import java.util.Objects;
 import jglib.util.image.IndexableSpriteSheet;
 import jglib.util.image.IndexableSpriteSheet.Index;
-import jquest.spec.chip.ChipImage;
 
-final class HeroImage implements ChipImage {
+final class HeroImage extends RpgCharaChipImageBase {
 
   enum HeroIndex implements Index<HeroIndex> {
     LEFTWARD_FIRST_STEP(0),
@@ -67,22 +66,27 @@ final class HeroImage implements ChipImage {
     return (image.width() + image.height()) / 2;
   }
 
+  @Override
   public void switchLeftward() {
     image.setIndex(HeroIndex.LEFTWARD_FIRST_STEP);
   }
 
+  @Override
   public void switchRightward() {
     image.setIndex(HeroIndex.RIGHTWARD_FIRST_STEP);
   }
 
+  @Override
   public void switchUpward() {
     image.setIndex(HeroIndex.UPWARD_FIRST_STEP);
   }
 
+  @Override
   public void switchDownward() {
     image.setIndex(HeroIndex.DOWNWARD_FIRST_STEP);
   }
 
+  @Override
   public void foot() {
     image.next();
   }

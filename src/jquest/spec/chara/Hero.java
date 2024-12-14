@@ -10,11 +10,6 @@ final class Hero extends RpgCharaBase {
   }
 
   @Override
-  protected HeroImage image() {
-    return (HeroImage) super.image();
-  }
-
-  @Override
   public void turnUp() {
     image().switchUpward();
   }
