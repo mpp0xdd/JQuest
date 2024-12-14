@@ -4,6 +4,7 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import jglib.util.GameUtilities;
 
@@ -16,7 +17,7 @@ public final class ImageLoader {
   }
 
   public static Image loadImage(Class<?> clazz, String name) {
-    return loadImage(clazz.getResource(name));
+    return loadImage(getResource(clazz, name));
   }
 
   public static Image loadImage(Object object, String name) {
@@ -28,7 +29,7 @@ public final class ImageLoader {
   }
 
   public static BufferedImage loadBufferedImage(Class<?> clazz, String name) {
-    return loadBufferedImage(clazz.getResource(name));
+    return loadBufferedImage(getResource(clazz, name));
   }
 
   public static BufferedImage loadBufferedImage(Object object, String name) {
@@ -38,6 +39,11 @@ public final class ImageLoader {
   public static void initialize() {
     IMAGE_POOL.values().forEach(Image::flush);
     IMAGE_POOL.clear();
+  }
+
+  private static URL getResource(Class<?> clazz, String name) {
+    return Objects.requireNonNull(
+        clazz.getResource(name), "Resource with given name not found:" + name);
   }
 
   private ImageLoader() {}
