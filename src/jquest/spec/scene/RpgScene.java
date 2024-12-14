@@ -11,12 +11,11 @@ public interface RpgScene extends SubGameScreen {
   interface Viewport extends SubGameScreen, RpgMapConcern {}
 
   public static RpgScene prologue() {
-    RpgSceneImpl scene = new RpgSceneImpl();
+    RpgMap rpgMap = RpgMap.castle();
+    RpgChara mainChara = RpgChara.mainCharaOf(rpgMap);
+    rpgMap.setMainChara(mainChara);
 
-    scene.setRpgMap(RpgMap.castle());
-    scene.setMainChara(RpgChara.mainCharaOf(scene.rpgMap()));
-
-    return scene;
+    return new RpgSceneImpl(rpgMap);
   }
 
   RpgMap rpgMap();

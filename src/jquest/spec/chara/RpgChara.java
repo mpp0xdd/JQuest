@@ -37,7 +37,6 @@ public interface RpgChara
     HeroImage heroImage = new HeroImage(spriteSheet);
 
     Hero hero = new Hero(heroImage, rpgMap, rpgMap.startCoordinate());
-    rpgMap.setMainChara(hero);
     return hero;
   }
 }
