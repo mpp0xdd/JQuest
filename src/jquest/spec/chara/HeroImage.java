@@ -8,8 +8,9 @@ import jquest.spec.chip.ChipImage;
 
 final class HeroImage implements ChipImage {
 
-  enum HeroIndex implements Index {
-    DOWN(1),
+  enum HeroIndex implements Index<HeroIndex> {
+    DOWNWARD_FIRST_STEP(0),
+    DOWNWARD_SECOND_STEP(1),
     ;
 
     private final int index;
@@ -21,6 +22,20 @@ final class HeroImage implements ChipImage {
     @Override
     public int index() {
       return index;
+    }
+
+    @Override
+    public HeroIndex next() {
+      return switch (this) {
+        case DOWNWARD_FIRST_STEP -> DOWNWARD_SECOND_STEP;
+        case DOWNWARD_SECOND_STEP -> DOWNWARD_FIRST_STEP;
+        default -> this;
+      };
+    }
+
+    @Override
+    public HeroIndex previous() {
+      return next();
     }
   }
 
@@ -41,6 +56,6 @@ final class HeroImage implements ChipImage {
   }
 
   public void switchDownward() {
-    image.setIndex(HeroIndex.DOWN);
+    image.setIndex(HeroIndex.DOWNWARD_FIRST_STEP);
   }
 }
