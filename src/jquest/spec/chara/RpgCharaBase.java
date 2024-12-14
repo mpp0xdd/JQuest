@@ -15,21 +15,25 @@ abstract class RpgCharaBase extends RpgMapConcernChipBase implements RpgChara {
   @Override
   public void moveUp() {
     computeCoordinate(ChipCoordinate::up);
+    turnUp();
   }
 
   @Override
   public void moveDown() {
     computeCoordinate(ChipCoordinate::down);
+    turnDown();
   }
 
   @Override
   public void moveLeft() {
     computeCoordinate(ChipCoordinate::left);
+    turnLeft();
   }
 
   @Override
   public void moveRight() {
     computeCoordinate(ChipCoordinate::right);
+    turnRight();
   }
 
   @Override

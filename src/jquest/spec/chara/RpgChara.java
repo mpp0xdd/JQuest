@@ -33,7 +33,7 @@ public interface RpgChara
   public static RpgChara mainCharaOf(RpgMap rpgMap) {
     BufferedImage image = ImageLoader.loadBufferedImage(RpgChara.class, "image/hero.gif");
     IndexableSpriteSheet<HeroIndex> spriteSheet =
-        IndexableSpriteSheet.create(image, 32, 32, 1, 2, HeroIndex.DOWNWARD_FIRST_STEP);
+        IndexableSpriteSheet.create(image, 32, 32, 4, 2, HeroIndex.DOWNWARD_FIRST_STEP);
     HeroImage heroImage = new HeroImage(spriteSheet);
 
     Hero hero = new Hero(heroImage, rpgMap, rpgMap.startCoordinate());

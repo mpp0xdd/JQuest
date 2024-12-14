@@ -16,7 +16,7 @@ final class Hero extends RpgCharaBase {
 
   @Override
   public void turnUp() {
-    // TODO
+    image().switchUpward();
   }
 
   @Override
@@ -26,12 +26,12 @@ final class Hero extends RpgCharaBase {
 
   @Override
   public void turnLeft() {
-    // TODO
+    image().switchLeftward();
   }
 
   @Override
   public void turnRight() {
-    // TODO
+    image().switchRightward();
   }
 
   @Override
