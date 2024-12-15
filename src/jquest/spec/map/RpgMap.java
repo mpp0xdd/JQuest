@@ -6,7 +6,7 @@ import jglib.util.spec.Rectangular;
 import jquest.spec.chara.RpgChara;
 import jquest.spec.chip.ChipCoordinate;
 
-public interface RpgMap extends Cellular, Rectangular, Drawable {
+public interface RpgMap extends Cellular, Rectangular {
 
   interface Viewport extends Cellular, Rectangular, Drawable {
     ChipCoordinate originCoordinate();

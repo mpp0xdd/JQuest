@@ -123,11 +123,6 @@ abstract class RpgMapBase implements RpgMap {
     return columnMapChipsStream(0).mapToInt(MapChip::length).sum();
   }
 
-  @Override
-  public void draw(Graphics g) {
-    mapChipsStream().forEach(mapChip -> mapChip.draw(g));
-  }
-
   protected abstract void initialize();
 
   private Stream<MapChip> columnMapChipsStream(int x) {
@@ -142,9 +137,5 @@ abstract class RpgMapBase implements RpgMap {
         .range(0, columns())
         .mapToObj(x -> ChipCoordinate.at(x, y))
         .map(mapChips::get);
-  }
-
-  private Stream<MapChip> mapChipsStream() {
-    return mapChips.values().stream();
   }
 }
