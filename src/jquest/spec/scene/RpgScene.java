@@ -4,11 +4,8 @@ import java.awt.Graphics;
 import jglib.component.SubGameScreen;
 import jquest.spec.chara.RpgChara;
 import jquest.spec.map.RpgMap;
-import jquest.spec.map.RpgMapConcern;
 
 public interface RpgScene extends SubGameScreen {
-
-  interface Viewport extends SubGameScreen, RpgMapConcern {}
 
   public static RpgScene prologue() {
     RpgMap rpgMap = RpgMap.castle();
@@ -24,7 +21,7 @@ public interface RpgScene extends SubGameScreen {
 
   @Override
   default void draw(Graphics g) {
-    rpgMap().draw(g);
+    rpgMap().viewport().draw(g);
     mainChara().draw(g);
   }
 
@@ -40,11 +37,11 @@ public interface RpgScene extends SubGameScreen {
 
   @Override
   default int width() {
-    return rpgMap().width();
+    return rpgMap().viewport().width();
   }
 
   @Override
   default int height() {
-    return rpgMap().height();
+    return rpgMap().viewport().height();
   }
 }

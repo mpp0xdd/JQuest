@@ -4,6 +4,19 @@ import jquest.spec.chip.ChipCoordinate;
 
 final class Castle extends RpgMapBase {
 
+  final class Viewport extends RpgMapBase.ViewportBase {
+
+    @Override
+    public int rows() {
+      return 8;
+    }
+
+    @Override
+    public int columns() {
+      return 10;
+    }
+  }
+
   private int[][] mapData;
 
   @Override
@@ -24,6 +37,11 @@ final class Castle extends RpgMapBase {
   @Override
   public boolean isBlockedOff(ChipCoordinate coordinate) {
     return mapData[coordinate.y()][coordinate.x()] == 1;
+  }
+
+  @Override
+  public Viewport viewport() {
+    return new Viewport();
   }
 
   @Override

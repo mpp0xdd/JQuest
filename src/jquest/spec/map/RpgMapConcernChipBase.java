@@ -21,11 +21,11 @@ public abstract class RpgMapConcernChipBase extends ChipBase implements RpgMapCo
 
   @Override
   public int x() {
-    return super.x() + rpgMap().x();
+    return super.x() + rpgMap().x() - rpgMap().viewport().x();
   }
 
   @Override
   public int y() {
-    return super.y() + rpgMap().y();
+    return super.y() + rpgMap().y() - rpgMap().viewport().y();
   }
 }
