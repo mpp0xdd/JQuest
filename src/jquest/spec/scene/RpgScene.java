@@ -2,10 +2,11 @@ package jquest.spec.scene;
 
 import java.awt.Graphics;
 import jglib.component.SubGameScreen;
+import jglib.util.spec.Updatable;
 import jquest.spec.chara.RpgChara;
 import jquest.spec.map.RpgMap;
 
-public interface RpgScene extends SubGameScreen {
+public interface RpgScene extends SubGameScreen, Updatable {
 
   public static RpgScene prologue() {
     RpgMap rpgMap = RpgMap.castle();
@@ -43,5 +44,10 @@ public interface RpgScene extends SubGameScreen {
   @Override
   default int height() {
     return rpgMap().viewport().height();
+  }
+
+  @Override
+  default void update() {
+    throw new UnsupportedOperationException();
   }
 }
