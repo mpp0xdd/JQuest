@@ -1,52 +1,45 @@
 package jquest.screen;
 
 import java.awt.Graphics;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Objects;
 import jglib.component.GameScreen;
-import jglib.util.model.Key;
-import jglib.util.model.Keyboard;
+import jglib.util.model.Keystroke;
 import jquest.screen.AnimationRegistry.AnimationName;
 import jquest.spec.scene.RpgScene;
 
 public class MainScreen extends GameScreen {
 
-  private enum OperationKey implements Key {
-    W(KeyEvent.VK_W),
-    S(KeyEvent.VK_S),
-    A(KeyEvent.VK_A),
-    D(KeyEvent.VK_D),
-    ;
-
-    private final int code;
-
-    private OperationKey(int code) {
-      this.code = code;
-    }
-
-    @Override
-    public int code() {
-      return code;
-    }
-  }
-
   private enum MainScreenAnimationName implements AnimationName {
     MAIN_CHARA_WALKING,
   }
 
+  private Keystroke wKey = Keystroke.RELEASED;
+  private Keystroke sKey = Keystroke.RELEASED;
+  private Keystroke aKey = Keystroke.RELEASED;
+  private Keystroke dKey = Keystroke.RELEASED;
+
   private RpgScene rpgScene;
-  private Keyboard<OperationKey> keyboard;
   private AnimationRegistry<MainScreenAnimationName> animationRegistry;
 
   public MainScreen(RpgScene rpgScene) {
     this.rpgScene = Objects.requireNonNull(rpgScene);
     setScreenSize(rpgScene.width(), rpgScene.height());
 
-    keyboard = Keyboard.create(OperationKey.values());
-    addKeyListener(keyboard);
+    addKeyListener(
+        new KeyAdapter() {
+          @Override
+          public void keyPressed(KeyEvent e) {
+            switch (e.getKeyCode()) {
+              case KeyEvent.VK_W -> wKey = Keystroke.PRESSED;
+              case KeyEvent.VK_S -> sKey = Keystroke.PRESSED;
+              case KeyEvent.VK_A -> aKey = Keystroke.PRESSED;
+              case KeyEvent.VK_D -> dKey = Keystroke.PRESSED;
+            }
+          }
+        });
     setFocusable(true);
-
-    setGameLoopInterval(100L);
 
     animationRegistry = new AnimationRegistry<>(MainScreenAnimationName.class);
     animationRegistry.register(
@@ -66,14 +59,18 @@ public class MainScreen extends GameScreen {
 
   @Override
   protected void runGameLoop() {
-    if (keyboard.isPressed(OperationKey.W)) {
+    if (wKey.isPressed()) {
       rpgScene.mainChara().moveUp();
-    } else if (keyboard.isPressed(OperationKey.S)) {
+      wKey = Keystroke.RELEASED;
+    } else if (sKey.isPressed()) {
       rpgScene.mainChara().moveDown();
-    } else if (keyboard.isPressed(OperationKey.A)) {
+      sKey = Keystroke.RELEASED;
+    } else if (aKey.isPressed()) {
       rpgScene.mainChara().moveLeft();
-    } else if (keyboard.isPressed(OperationKey.D)) {
+      aKey = Keystroke.RELEASED;
+    } else if (dKey.isPressed()) {
       rpgScene.mainChara().moveRight();
+      dKey = Keystroke.RELEASED;
     }
   }
 }
