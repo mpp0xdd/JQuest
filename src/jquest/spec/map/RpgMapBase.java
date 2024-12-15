@@ -26,7 +26,7 @@ abstract class RpgMapBase implements RpgMap {
   }
 
   @Override
-  public RpgChara getMainChara() {
+  public RpgChara mainChara() {
     return mainChara;
   }
 

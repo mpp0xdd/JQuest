@@ -18,6 +18,6 @@ class RpgSceneImpl implements RpgScene {
 
   @Override
   public RpgChara mainChara() {
-    return rpgMap.getMainChara();
+    return rpgMap.mainChara();
   }
 }
