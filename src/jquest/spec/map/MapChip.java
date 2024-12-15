@@ -2,10 +2,9 @@ package jquest.spec.map;
 
 import java.awt.Image;
 import jquest.helper.ImageLoader;
-import jquest.spec.chip.Chip;
 import jquest.spec.chip.ChipCoordinate;
 
-public interface MapChip extends RpgMapConcern, Chip {
+public interface MapChip extends RpgMapConcernChip {
 
   public static MapChip create(String name, RpgMap rpgMap, ChipCoordinate coordinate) {
     Image image = ImageLoader.loadImage(MapChip.class, name);

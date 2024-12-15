@@ -1,12 +1,11 @@
 package jquest.spec.map;
 
 import java.util.Objects;
-import jquest.spec.chip.Chip;
 import jquest.spec.chip.ChipBase;
 import jquest.spec.chip.ChipCoordinate;
 import jquest.spec.chip.ChipImage;
 
-public abstract class RpgMapConcernChipBase extends ChipBase implements RpgMapConcern, Chip {
+public abstract class RpgMapConcernChipBase extends ChipBase implements RpgMapConcernChip {
 
   private RpgMap rpgMap;
 

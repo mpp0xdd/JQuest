@@ -13,13 +13,11 @@ import jquest.spec.action.turn.LeftDirectional;
 import jquest.spec.action.turn.RightDirectional;
 import jquest.spec.action.turn.UpDirectional;
 import jquest.spec.chara.HeroImage.HeroIndex;
-import jquest.spec.chip.Chip;
 import jquest.spec.map.RpgMap;
-import jquest.spec.map.RpgMapConcern;
+import jquest.spec.map.RpgMapConcernChip;
 
 public interface RpgChara
-    extends RpgMapConcern,
-        Chip,
+    extends RpgMapConcernChip,
         UpMovable,
         DownMovable,
         LeftMovable,
