@@ -48,6 +48,22 @@ final class HeroImage extends RpgCharaChipImageBase {
     public HeroIndex previous() {
       return next();
     }
+
+    public boolean isLeftward() {
+      return this == LEFTWARD_FIRST_STEP || this == LEFTWARD_SECOND_STEP;
+    }
+
+    public boolean isRightward() {
+      return this == RIGHTWARD_FIRST_STEP || this == RIGHTWARD_SECOND_STEP;
+    }
+
+    public boolean isUpward() {
+      return this == UPWARD_FIRST_STEP || this == UPWARD_SECOND_STEP;
+    }
+
+    public boolean isDownward() {
+      return this == DOWNWARD_FIRST_STEP || this == DOWNWARD_SECOND_STEP;
+    }
   }
 
   private final IndexableSpriteSheet<HeroIndex> image;
@@ -101,33 +117,21 @@ final class HeroImage extends RpgCharaChipImageBase {
 
   @Override
   public boolean isLeftward() {
-    return switch (image.getIndex()) {
-      case LEFTWARD_FIRST_STEP, LEFTWARD_SECOND_STEP -> true;
-      default -> false;
-    };
+    return image.getIndex().isLeftward();
   }
 
   @Override
   public boolean isRightward() {
-    return switch (image.getIndex()) {
-      case RIGHTWARD_FIRST_STEP, RIGHTWARD_SECOND_STEP -> true;
-      default -> false;
-    };
+    return image.getIndex().isRightward();
   }
 
   @Override
   public boolean isUpward() {
-    return switch (image.getIndex()) {
-      case UPWARD_FIRST_STEP, UPWARD_SECOND_STEP -> true;
-      default -> false;
-    };
+    return image.getIndex().isUpward();
   }
 
   @Override
   public boolean isDownward() {
-    return switch (image.getIndex()) {
-      case DOWNWARD_FIRST_STEP, DOWNWARD_SECOND_STEP -> true;
-      default -> false;
-    };
+    return image.getIndex().isDownward();
   }
 }
