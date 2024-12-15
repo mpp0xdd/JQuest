@@ -68,26 +68,66 @@ final class HeroImage extends RpgCharaChipImageBase {
 
   @Override
   public void switchLeftward() {
-    image.setIndex(HeroIndex.LEFTWARD_FIRST_STEP);
+    if (!isLeftward()) {
+      image.setIndex(HeroIndex.LEFTWARD_FIRST_STEP);
+    }
   }
 
   @Override
   public void switchRightward() {
-    image.setIndex(HeroIndex.RIGHTWARD_FIRST_STEP);
+    if (!isRightward()) {
+      image.setIndex(HeroIndex.RIGHTWARD_FIRST_STEP);
+    }
   }
 
   @Override
   public void switchUpward() {
-    image.setIndex(HeroIndex.UPWARD_FIRST_STEP);
+    if (!isUpward()) {
+      image.setIndex(HeroIndex.UPWARD_FIRST_STEP);
+    }
   }
 
   @Override
   public void switchDownward() {
-    image.setIndex(HeroIndex.DOWNWARD_FIRST_STEP);
+    if (!isDownward()) {
+      image.setIndex(HeroIndex.DOWNWARD_FIRST_STEP);
+    }
   }
 
   @Override
   public void foot() {
     image.next();
+  }
+
+  @Override
+  public boolean isLeftward() {
+    return switch (image.getIndex()) {
+      case LEFTWARD_FIRST_STEP, LEFTWARD_SECOND_STEP -> true;
+      default -> false;
+    };
+  }
+
+  @Override
+  public boolean isRightward() {
+    return switch (image.getIndex()) {
+      case RIGHTWARD_FIRST_STEP, RIGHTWARD_SECOND_STEP -> true;
+      default -> false;
+    };
+  }
+
+  @Override
+  public boolean isUpward() {
+    return switch (image.getIndex()) {
+      case UPWARD_FIRST_STEP, UPWARD_SECOND_STEP -> true;
+      default -> false;
+    };
+  }
+
+  @Override
+  public boolean isDownward() {
+    return switch (image.getIndex()) {
+      case DOWNWARD_FIRST_STEP, DOWNWARD_SECOND_STEP -> true;
+      default -> false;
+    };
   }
 }

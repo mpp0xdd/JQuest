@@ -13,4 +13,12 @@ interface RpgCharaChipImage extends ChipImage {
   void switchDownward();
 
   void foot();
+
+  boolean isLeftward();
+
+  boolean isRightward();
+
+  boolean isUpward();
+
+  boolean isDownward();
 }
