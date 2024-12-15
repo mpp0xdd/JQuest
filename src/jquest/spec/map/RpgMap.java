@@ -1,19 +1,16 @@
 package jquest.spec.map;
 
+import jglib.util.spec.Cellular;
 import jglib.util.spec.Drawable;
 import jglib.util.spec.Rectangular;
 import jquest.spec.chara.RpgChara;
 import jquest.spec.chip.ChipCoordinate;
 
-public interface RpgMap extends Drawable, Rectangular {
+public interface RpgMap extends Cellular, Rectangular, Drawable {
 
   public static RpgMap castle() {
     return new Castle();
   }
-
-  int rows();
-
-  int columns();
 
   RpgChara mainChara();
 
