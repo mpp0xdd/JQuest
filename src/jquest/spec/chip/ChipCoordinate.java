@@ -2,12 +2,6 @@ package jquest.spec.chip;
 
 public interface ChipCoordinate {
 
-  @FunctionalInterface
-  interface UnaryOperator extends java.util.function.UnaryOperator<ChipCoordinate> {
-    @Override
-    ChipCoordinate apply(ChipCoordinate t);
-  }
-
   public static ChipCoordinate at(int x, int y) {
     return new ChipCoordinateImpl(x, y);
   }

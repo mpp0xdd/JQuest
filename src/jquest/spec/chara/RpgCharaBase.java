@@ -1,5 +1,6 @@
 package jquest.spec.chara;
 
+import java.util.function.UnaryOperator;
 import jquest.spec.chip.ChipCoordinate;
 import jquest.spec.chip.ChipLocation;
 import jquest.spec.map.RpgMap;
@@ -41,7 +42,7 @@ abstract class RpgCharaBase extends RpgMapConcernChipBase implements RpgChara {
   }
 
   @Override
-  protected ChipLocation computeFromChipCoordinate(ChipCoordinate.UnaryOperator operator) {
+  protected ChipLocation computeFromChipCoordinate(UnaryOperator<ChipCoordinate> operator) {
     ChipCoordinate computedCoordinate = operator.apply(location().chipCoordinate());
     if (rpgMap().isBlockedOff(computedCoordinate)) {
       return location();

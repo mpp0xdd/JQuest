@@ -1,5 +1,6 @@
 package jquest.spec.chip;
 
+import java.util.function.UnaryOperator;
 import jquest.common.Coordinate;
 
 class ChipLocationImpl implements ChipLocation {
@@ -39,12 +40,12 @@ class ChipLocationImpl implements ChipLocation {
   }
 
   @Override
-  public ChipLocation computeFromChipCoordinate(ChipCoordinate.UnaryOperator operator) {
+  public ChipLocation computeFromChipCoordinate(UnaryOperator<ChipCoordinate> operator) {
     return new ChipLocationImpl(operator.apply(chipCoordinate), chipLength);
   }
 
   @Override
-  public ChipLocation computeFromCoordinate(Coordinate.UnaryOperator operator) {
+  public ChipLocation computeFromCoordinate(UnaryOperator<Coordinate> operator) {
     return new ChipLocationImpl(operator.apply(coordinate), chipLength);
   }
 }
