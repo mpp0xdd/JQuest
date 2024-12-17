@@ -42,7 +42,7 @@ public abstract class ChipBase implements Chip {
     return image;
   }
 
-  protected ChipCoordinate computeChipCoordinate(ChipCoordinate.UnaryOperator operator) {
+  protected ChipCoordinate computeFrom(ChipCoordinate.UnaryOperator operator) {
     location = location.computeFrom(operator);
     return location.chipCoordinate();
   }
