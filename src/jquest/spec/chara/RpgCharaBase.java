@@ -46,6 +46,6 @@ abstract class RpgCharaBase extends RpgMapConcernChipBase implements RpgChara {
     if (rpgMap().isBlockedOff(computedCoordinate)) {
       return location();
     }
-    return super.computeFrom(coordinate -> computedCoordinate);
+    return super.computeFrom((ChipCoordinate.UnaryOperator) coordinate -> computedCoordinate);
   }
 }
