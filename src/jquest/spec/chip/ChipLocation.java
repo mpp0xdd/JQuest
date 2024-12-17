@@ -16,7 +16,7 @@ public interface ChipLocation {
 
   Coordinate coordinate();
 
-  ChipLocation computeFrom(ChipCoordinate.UnaryOperator operator);
+  ChipLocation computeFromChipCoordinate(ChipCoordinate.UnaryOperator operator);
 
-  ChipLocation computeFrom(Coordinate.UnaryOperator operator);
+  ChipLocation computeFromCoordinate(Coordinate.UnaryOperator operator);
 }

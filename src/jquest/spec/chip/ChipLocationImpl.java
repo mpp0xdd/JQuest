@@ -39,12 +39,12 @@ class ChipLocationImpl implements ChipLocation {
   }
 
   @Override
-  public ChipLocation computeFrom(ChipCoordinate.UnaryOperator operator) {
+  public ChipLocation computeFromChipCoordinate(ChipCoordinate.UnaryOperator operator) {
     return new ChipLocationImpl(operator.apply(chipCoordinate), chipLength);
   }
 
   @Override
-  public ChipLocation computeFrom(Coordinate.UnaryOperator operator) {
+  public ChipLocation computeFromCoordinate(Coordinate.UnaryOperator operator) {
     return new ChipLocationImpl(operator.apply(coordinate), chipLength);
   }
 }
