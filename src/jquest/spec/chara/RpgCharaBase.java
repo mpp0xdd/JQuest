@@ -13,25 +13,25 @@ abstract class RpgCharaBase extends RpgMapConcernChipBase implements RpgChara {
 
   @Override
   public void moveUp() {
-    computeCoordinate(ChipCoordinate::up);
+    computeChipCoordinate(ChipCoordinate::up);
     turnUp();
   }
 
   @Override
   public void moveDown() {
-    computeCoordinate(ChipCoordinate::down);
+    computeChipCoordinate(ChipCoordinate::down);
     turnDown();
   }
 
   @Override
   public void moveLeft() {
-    computeCoordinate(ChipCoordinate::left);
+    computeChipCoordinate(ChipCoordinate::left);
     turnLeft();
   }
 
   @Override
   public void moveRight() {
-    computeCoordinate(ChipCoordinate::right);
+    computeChipCoordinate(ChipCoordinate::right);
     turnRight();
   }
 
@@ -41,11 +41,11 @@ abstract class RpgCharaBase extends RpgMapConcernChipBase implements RpgChara {
   }
 
   @Override
-  protected ChipCoordinate computeCoordinate(UnaryOperator<ChipCoordinate> operator) {
-    ChipCoordinate computedCoordinate = operator.apply(coordinate());
+  protected ChipCoordinate computeChipCoordinate(UnaryOperator<ChipCoordinate> operator) {
+    ChipCoordinate computedCoordinate = operator.apply(chipCoordinate());
     if (rpgMap().isBlockedOff(computedCoordinate)) {
-      return coordinate();
+      return chipCoordinate();
     }
-    return super.computeCoordinate(coordinate -> computedCoordinate);
+    return super.computeChipCoordinate(coordinate -> computedCoordinate);
   }
 }

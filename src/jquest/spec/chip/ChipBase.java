@@ -7,26 +7,26 @@ import java.util.function.UnaryOperator;
 public abstract class ChipBase implements Chip {
 
   private ChipImage image;
-  private ChipCoordinate coordinate;
+  private ChipCoordinate chipCoordinate;
 
-  public ChipBase(ChipImage image, ChipCoordinate coordinate) {
+  public ChipBase(ChipImage image, ChipCoordinate chipCoordinate) {
     this.image = checkChipImage(image);
-    this.coordinate = Objects.requireNonNull(coordinate);
+    this.chipCoordinate = Objects.requireNonNull(chipCoordinate);
   }
 
   @Override
-  public ChipCoordinate coordinate() {
-    return coordinate;
+  public ChipCoordinate chipCoordinate() {
+    return chipCoordinate;
   }
 
   @Override
   public int x() {
-    return coordinate().x() * length();
+    return chipCoordinate().x() * length();
   }
 
   @Override
   public int y() {
-    return coordinate().y() * length();
+    return chipCoordinate().y() * length();
   }
 
   @Override
@@ -43,8 +43,8 @@ public abstract class ChipBase implements Chip {
     return image;
   }
 
-  protected ChipCoordinate computeCoordinate(UnaryOperator<ChipCoordinate> operator) {
-    return coordinate = operator.apply(coordinate);
+  protected ChipCoordinate computeChipCoordinate(UnaryOperator<ChipCoordinate> operator) {
+    return chipCoordinate = operator.apply(chipCoordinate);
   }
 
   private ChipImage checkChipImage(ChipImage image) {

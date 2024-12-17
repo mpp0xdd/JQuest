@@ -5,5 +5,5 @@ import jglib.util.spec.Square;
 
 public interface Chip extends Drawable, Square {
 
-  ChipCoordinate coordinate();
+  ChipCoordinate chipCoordinate();
 }

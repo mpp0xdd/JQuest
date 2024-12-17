@@ -9,7 +9,7 @@ import jquest.spec.chip.ChipCoordinate;
 public interface RpgMap extends Cellular, Rectangular {
 
   interface Viewport extends Cellular, Rectangular, Drawable {
-    ChipCoordinate originCoordinate();
+    ChipCoordinate originChipCoordinate();
   }
 
   public static RpgMap castle() {
