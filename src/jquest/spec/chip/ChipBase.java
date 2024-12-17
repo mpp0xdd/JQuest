@@ -20,12 +20,12 @@ public abstract class ChipBase implements Chip {
 
   @Override
   public int x() {
-    return location().chipCoordinate().x() * length();
+    return location().coordinate().x();
   }
 
   @Override
   public int y() {
-    return location().chipCoordinate().y() * length();
+    return location().coordinate().y();
   }
 
   @Override
