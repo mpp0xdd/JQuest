@@ -2,31 +2,30 @@ package jquest.spec.chip;
 
 import java.awt.Graphics;
 import java.util.Objects;
-import java.util.function.UnaryOperator;
 
 public abstract class ChipBase implements Chip {
 
   private ChipImage image;
-  private ChipCoordinate chipCoordinate;
+  private ChipLocation location;
 
   public ChipBase(ChipImage image, ChipCoordinate chipCoordinate) {
     this.image = checkChipImage(image);
-    this.chipCoordinate = Objects.requireNonNull(chipCoordinate);
+    this.location = ChipLocation.from(chipCoordinate, length());
   }
 
   @Override
-  public ChipCoordinate chipCoordinate() {
-    return chipCoordinate;
+  public ChipLocation location() {
+    return location;
   }
 
   @Override
   public int x() {
-    return chipCoordinate().x() * length();
+    return location().chipCoordinate().x() * length();
   }
 
   @Override
   public int y() {
-    return chipCoordinate().y() * length();
+    return location().chipCoordinate().y() * length();
   }
 
   @Override
@@ -43,8 +42,9 @@ public abstract class ChipBase implements Chip {
     return image;
   }
 
-  protected ChipCoordinate computeChipCoordinate(UnaryOperator<ChipCoordinate> operator) {
-    return chipCoordinate = operator.apply(chipCoordinate);
+  protected ChipCoordinate computeChipCoordinate(ChipCoordinate.UnaryOperator operator) {
+    location = location.computeFrom(operator);
+    return location.chipCoordinate();
   }
 
   private ChipImage checkChipImage(ChipImage image) {

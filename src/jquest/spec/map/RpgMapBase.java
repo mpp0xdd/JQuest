@@ -14,12 +14,12 @@ abstract class RpgMapBase implements RpgMap {
 
     @Override
     public ChipCoordinate originChipCoordinate() {
-      int originX = columns() / 2 - mainChara().chipCoordinate().x();
+      int originX = columns() / 2 - mainChara().location().chipCoordinate().x();
       originX = Math.min(originX, 0);
       originX = Math.max(originX, columns() - RpgMapBase.this.columns());
       originX = Math.abs(originX);
 
-      int originY = rows() / 2 - mainChara().chipCoordinate().y();
+      int originY = rows() / 2 - mainChara().location().chipCoordinate().y();
       originY = Math.min(originY, 0);
       originY = Math.max(originY, rows() - RpgMapBase.this.rows());
       originY = Math.abs(originY);
@@ -30,7 +30,8 @@ abstract class RpgMapBase implements RpgMap {
     @Override
     public int x() {
       return RpgMapBase.this.x()
-          + Stream.iterate(originChipCoordinate().left(), coord -> coord.x() >= 0, ChipCoordinate::left)
+          + Stream.iterate(
+                  originChipCoordinate().left(), coord -> coord.x() >= 0, ChipCoordinate::left)
               .map(mapChips::get)
               .mapToInt(MapChip::length)
               .sum();
