@@ -2,6 +2,8 @@ package jquest.spec.chip;
 
 public interface ChipCoordinate {
 
+  ChipCoordinate ZERO = at(0, 0);
+
   public static ChipCoordinate at(int x, int y) {
     return new ChipCoordinateImpl(x, y);
   }

@@ -41,7 +41,7 @@ abstract class RpgMapBase implements RpgMap {
 
     @Override
     public int width() {
-      return Stream.iterate(ChipCoordinate.at(0, 0), ChipCoordinate::right)
+      return Stream.iterate(ChipCoordinate.ZERO, ChipCoordinate::right)
           .limit(columns())
           .map(mapChips::get)
           .mapToInt(MapChip::length)
@@ -50,7 +50,7 @@ abstract class RpgMapBase implements RpgMap {
 
     @Override
     public int height() {
-      return Stream.iterate(ChipCoordinate.at(0, 0), ChipCoordinate::down)
+      return Stream.iterate(ChipCoordinate.ZERO, ChipCoordinate::down)
           .limit(rows())
           .map(mapChips::get)
           .mapToInt(MapChip::length)
