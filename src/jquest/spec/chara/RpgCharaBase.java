@@ -15,25 +15,25 @@ abstract class RpgCharaBase extends RpgMapConcernChipBase implements RpgChara {
 
   @Override
   public void moveUp() {
-    computeFromCoordinate(coord -> coord.plus(Velocity.of(0, -speed)));
+    computeLocationFromCoordinate(coord -> coord.plus(Velocity.of(0, -speed)));
     turnUp();
   }
 
   @Override
   public void moveDown() {
-    computeFromCoordinate(coord -> coord.plus(Velocity.of(0, speed)));
+    computeLocationFromCoordinate(coord -> coord.plus(Velocity.of(0, speed)));
     turnDown();
   }
 
   @Override
   public void moveLeft() {
-    computeFromCoordinate(coord -> coord.plus(Velocity.of(-speed, 0)));
+    computeLocationFromCoordinate(coord -> coord.plus(Velocity.of(-speed, 0)));
     turnLeft();
   }
 
   @Override
   public void moveRight() {
-    computeFromCoordinate(coord -> coord.plus(Velocity.of(speed, 0)));
+    computeLocationFromCoordinate(coord -> coord.plus(Velocity.of(speed, 0)));
     turnRight();
   }
 

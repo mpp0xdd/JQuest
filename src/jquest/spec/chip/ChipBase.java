@@ -44,11 +44,11 @@ public abstract class ChipBase implements Chip {
     return image;
   }
 
-  protected ChipLocation computeFromChipCoordinate(UnaryOperator<ChipCoordinate> operator) {
+  protected ChipLocation computeLocationFromChipCoordinate(UnaryOperator<ChipCoordinate> operator) {
     return location = location.computeFromChipCoordinate(operator);
   }
 
-  protected ChipLocation computeFromCoordinate(UnaryOperator<Coordinate> operator) {
+  protected ChipLocation computeLocationFromCoordinate(UnaryOperator<Coordinate> operator) {
     return location = location.computeFromCoordinate(operator);
   }
 
