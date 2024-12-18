@@ -5,11 +5,13 @@ import jglib.util.spec.Drawable;
 import jglib.util.spec.Rectangular;
 import jquest.spec.chara.RpgChara;
 import jquest.spec.chip.ChipCoordinate;
+import jquest.spec.chip.ChipLocation;
 
 public interface RpgMap extends Cellular, Rectangular {
 
   interface Viewport extends Cellular, Rectangular, Drawable {
-    ChipCoordinate originChipCoordinate();
+
+    ChipLocation originChipLocation();
   }
 
   public static RpgMap castle() {

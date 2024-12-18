@@ -5,50 +5,43 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+import jquest.common.Coordinate;
 import jquest.spec.chara.RpgChara;
 import jquest.spec.chip.ChipCoordinate;
+import jquest.spec.chip.ChipLocation;
 
 abstract class RpgMapBase implements RpgMap {
 
   abstract class ViewportBase implements RpgMap.Viewport {
 
     @Override
-    public ChipCoordinate originChipCoordinate() {
-      int originX = columns() / 2 - mainChara().location().chipCoordinate().x();
+    public ChipLocation originChipLocation() {
+      int originX = width() / 2 - mainChara().location().coordinate().x();
       originX = Math.min(originX, 0);
-      originX = Math.max(originX, columns() - RpgMapBase.this.columns());
+      originX = Math.max(originX, width() - RpgMapBase.this.width());
       originX = Math.abs(originX);
 
-      int originY = rows() / 2 - mainChara().location().chipCoordinate().y();
+      int originY = height() / 2 - mainChara().location().coordinate().y();
       originY = Math.min(originY, 0);
-      originY = Math.max(originY, rows() - RpgMapBase.this.rows());
+      originY = Math.max(originY, height() - RpgMapBase.this.height());
       originY = Math.abs(originY);
 
-      return ChipCoordinate.at(originX, originY);
+      return ChipLocation.from(Coordinate.at(originX, originY), mainChara().length());
     }
 
     @Override
     public int x() {
-      return RpgMapBase.this.x()
-          + Stream.iterate(
-                  originChipCoordinate().left(), coord -> coord.x() >= 0, ChipCoordinate::left)
-              .map(mapChips::get)
-              .mapToInt(MapChip::length)
-              .sum();
+      return RpgMapBase.this.x() + originChipLocation().coordinate().x();
     }
 
     @Override
     public int y() {
-      return RpgMapBase.this.y()
-          + Stream.iterate(originChipCoordinate().up(), coord -> coord.y() >= 0, ChipCoordinate::up)
-              .map(mapChips::get)
-              .mapToInt(MapChip::length)
-              .sum();
+      return RpgMapBase.this.y() + originChipLocation().coordinate().y();
     }
 
     @Override
     public int width() {
-      return Stream.iterate(originChipCoordinate(), ChipCoordinate::right)
+      return Stream.iterate(ChipCoordinate.at(0, 0), ChipCoordinate::right)
           .limit(columns())
           .map(mapChips::get)
           .mapToInt(MapChip::length)
@@ -57,7 +50,7 @@ abstract class RpgMapBase implements RpgMap {
 
     @Override
     public int height() {
-      return Stream.iterate(originChipCoordinate(), ChipCoordinate::down)
+      return Stream.iterate(ChipCoordinate.at(0, 0), ChipCoordinate::down)
           .limit(rows())
           .map(mapChips::get)
           .mapToInt(MapChip::length)
@@ -66,7 +59,7 @@ abstract class RpgMapBase implements RpgMap {
 
     @Override
     public void draw(Graphics g) {
-      Stream.iterate(originChipCoordinate(), ChipCoordinate::down)
+      Stream.iterate(originChipLocation().chipCoordinate(), ChipCoordinate::down)
           .limit(rows())
           .flatMap(coord -> Stream.iterate(coord, ChipCoordinate::right).limit(columns()))
           .map(mapChips::get)
