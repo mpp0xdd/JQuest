@@ -3,6 +3,7 @@ package jquest.spec.map;
 import java.awt.Graphics;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import jquest.common.Coordinate;
@@ -60,9 +61,10 @@ abstract class RpgMapBase implements RpgMap {
     @Override
     public void draw(Graphics g) {
       Stream.iterate(originChipLocation().chipCoordinate(), ChipCoordinate::down)
-          .limit(rows())
-          .flatMap(coord -> Stream.iterate(coord, ChipCoordinate::right).limit(columns()))
+          .limit(rows() + 1)
+          .flatMap(coord -> Stream.iterate(coord, ChipCoordinate::right).limit(columns() + 1))
           .map(mapChips::get)
+          .filter(Objects::nonNull)
           .forEach(mapChip -> mapChip.draw(g));
     }
   }
