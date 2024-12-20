@@ -78,11 +78,6 @@ final class HeroImage extends RpgCharaChipImageBase {
   }
 
   @Override
-  public int length() {
-    return (image.width() + image.height()) / 2;
-  }
-
-  @Override
   public void switchLeftward() {
     if (!isLeftward()) {
       image.setIndex(HeroIndex.LEFTWARD_FIRST_STEP);

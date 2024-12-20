@@ -11,7 +11,7 @@ public abstract class ChipBase implements Chip {
   private ChipLocation location;
 
   public ChipBase(ChipImage image, ChipCoordinate chipCoordinate) {
-    this.image = checkChipImage(image);
+    this.image = Objects.requireNonNull(image);
     this.location = ChipLocation.from(chipCoordinate);
   }
 
@@ -50,16 +50,5 @@ public abstract class ChipBase implements Chip {
 
   protected ChipLocation computeLocationFromCoordinate(UnaryOperator<Coordinate> operator) {
     return location = location.computeFromCoordinate(operator);
-  }
-
-  private ChipImage checkChipImage(ChipImage image) {
-    Objects.requireNonNull(image);
-
-    if (image.length() != this.length()) {
-      throw new IllegalArgumentException(
-          String.format("expected image size <%s>, but got <%s>", this.length(), image.length()));
-    }
-
-    return image;
   }
 }
