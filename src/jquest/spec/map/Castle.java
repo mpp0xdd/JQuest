@@ -24,7 +24,9 @@ final class Castle extends RpgMapBaseForIntMapData {
 
   @Override
   public boolean isBlockedOff(ChipCoordinate coordinate) {
-    return mapData(coordinate.x(), coordinate.y()) == 1;
+    return mapData(coordinate.x(), coordinate.y()) //
+        .filter(data -> data == 1)
+        .isPresent();
   }
 
   @Override

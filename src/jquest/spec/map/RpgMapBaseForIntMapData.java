@@ -1,5 +1,6 @@
 package jquest.spec.map;
 
+import java.util.Optional;
 import jquest.spec.chip.ChipCoordinate;
 
 abstract class RpgMapBaseForIntMapData extends RpgMapBase {
@@ -30,11 +31,19 @@ abstract class RpgMapBaseForIntMapData extends RpgMapBase {
     }
   }
 
-  protected int mapData(int x, int y) {
-    return mapData[y][x];
+  protected Optional<Integer> mapData(int x, int y) {
+    if (validMapDataCoordinates(x, y)) {
+      return Optional.of(mapData[y][x]);
+    }
+    return Optional.empty();
   }
 
   protected abstract int[][] loadMapData();
 
   protected abstract String toName(int mapData);
+
+  private boolean validMapDataCoordinates(int x, int y) {
+    return (0 <= x && x < columns()) //
+        && (0 <= y && y < rows());
+  }
 }
