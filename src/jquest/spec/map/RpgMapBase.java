@@ -7,7 +7,6 @@ import java.util.Objects;
 import java.util.stream.Stream;
 import jquest.common.Coordinate;
 import jquest.spec.chara.RpgChara;
-import jquest.spec.chip.Chip;
 import jquest.spec.chip.ChipCoordinate;
 import jquest.spec.chip.ChipLocation;
 
@@ -41,13 +40,13 @@ abstract class RpgMapBase implements RpgMap {
     }
 
     @Override
-    public int width() {
-      return columns() * Chip.LENGTH;
+    public final int width() {
+      return RpgMap.Viewport.super.width();
     }
 
     @Override
-    public int height() {
-      return rows() * Chip.LENGTH;
+    public final int height() {
+      return RpgMap.Viewport.super.height();
     }
 
     @Override
@@ -97,13 +96,13 @@ abstract class RpgMapBase implements RpgMap {
   }
 
   @Override
-  public int width() {
-    return columns() * Chip.LENGTH;
+  public final int width() {
+    return RpgMap.super.width();
   }
 
   @Override
-  public int height() {
-    return rows() * Chip.LENGTH;
+  public final int height() {
+    return RpgMap.super.height();
   }
 
   protected abstract void initialize();
