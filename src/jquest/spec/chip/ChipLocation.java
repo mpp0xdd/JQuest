@@ -35,7 +35,7 @@ public interface ChipLocation {
 
   default Set<ChipCoordinate> overlappedChipCoordinates() {
     if (overlapExactlyWithOtherChips()) {
-      return Collections.emptySet();
+      return Collections.singleton(chipCoordinate());
     }
 
     Rectangle thisChipRect =
@@ -60,7 +60,7 @@ public interface ChipLocation {
     result.add(toChipCoordinate(Coordinate.at(minX, maxY)));
     result.add(toChipCoordinate(Coordinate.at(maxX, minY)));
     result.add(toChipCoordinate(Coordinate.at(maxX, maxY)));
-    return result;
+    return Collections.unmodifiableSet(result);
   }
 
   default ChipLocation computeFromChipCoordinate(UnaryOperator<ChipCoordinate> operator) {
