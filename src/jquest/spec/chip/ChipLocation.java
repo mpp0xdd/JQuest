@@ -1,5 +1,6 @@
 package jquest.spec.chip;
 
+import java.util.Set;
 import java.util.function.UnaryOperator;
 import jquest.common.Coordinate;
 
@@ -19,6 +20,10 @@ public interface ChipLocation {
 
   default boolean overlapExactlyWithOtherChips() {
     return coordinate().x() % Chip.LENGTH == 0 && coordinate().y() % Chip.LENGTH == 0;
+  }
+
+  default Set<ChipCoordinate> overlappedChipCoordinates() {
+    throw new UnsupportedOperationException();
   }
 
   default ChipLocation computeFromChipCoordinate(UnaryOperator<ChipCoordinate> operator) {
