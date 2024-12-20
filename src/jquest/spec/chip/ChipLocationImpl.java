@@ -5,28 +5,25 @@ import jquest.common.Coordinate;
 
 class ChipLocationImpl implements ChipLocation {
 
-  private static Coordinate toCoordinate(ChipCoordinate chipCoordinate, int chipLength) {
-    return Coordinate.at(chipCoordinate.x() * chipLength, chipCoordinate.y() * chipLength);
+  private static Coordinate toCoordinate(ChipCoordinate chipCoordinate) {
+    return Coordinate.at(chipCoordinate.x() * Chip.LENGTH, chipCoordinate.y() * Chip.LENGTH);
   }
 
-  private static ChipCoordinate toChipCoordinate(Coordinate coordinate, int chipLength) {
-    return ChipCoordinate.at(coordinate.x() / chipLength, coordinate.y() / chipLength);
+  private static ChipCoordinate toChipCoordinate(Coordinate coordinate) {
+    return ChipCoordinate.at(coordinate.x() / Chip.LENGTH, coordinate.y() / Chip.LENGTH);
   }
 
-  private final int chipLength;
   private final ChipCoordinate chipCoordinate;
   private final Coordinate coordinate;
 
-  public ChipLocationImpl(ChipCoordinate chipCoordinate, int chipLength) {
+  public ChipLocationImpl(ChipCoordinate chipCoordinate) {
     this.chipCoordinate = chipCoordinate;
-    this.coordinate = toCoordinate(chipCoordinate, chipLength);
-    this.chipLength = chipLength;
+    this.coordinate = toCoordinate(chipCoordinate);
   }
 
-  public ChipLocationImpl(Coordinate coordinate, int chipLength) {
+  public ChipLocationImpl(Coordinate coordinate) {
     this.coordinate = coordinate;
-    this.chipCoordinate = toChipCoordinate(coordinate, chipLength);
-    this.chipLength = chipLength;
+    this.chipCoordinate = toChipCoordinate(coordinate);
   }
 
   @Override
@@ -41,11 +38,11 @@ class ChipLocationImpl implements ChipLocation {
 
   @Override
   public ChipLocation computeFromChipCoordinate(UnaryOperator<ChipCoordinate> operator) {
-    return new ChipLocationImpl(operator.apply(chipCoordinate), chipLength);
+    return new ChipLocationImpl(operator.apply(chipCoordinate));
   }
 
   @Override
   public ChipLocation computeFromCoordinate(UnaryOperator<Coordinate> operator) {
-    return new ChipLocationImpl(operator.apply(coordinate), chipLength);
+    return new ChipLocationImpl(operator.apply(coordinate));
   }
 }

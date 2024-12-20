@@ -27,7 +27,7 @@ abstract class RpgMapBase implements RpgMap {
       originY = Math.max(originY, height() - RpgMapBase.this.height());
       originY = Math.abs(originY);
 
-      return ChipLocation.from(Coordinate.at(originX, originY), mainChara().length());
+      return ChipLocation.from(Coordinate.at(originX, originY));
     }
 
     @Override

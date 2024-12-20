@@ -5,12 +5,12 @@ import jquest.common.Coordinate;
 
 public interface ChipLocation {
 
-  public static ChipLocation from(ChipCoordinate chipCoordinate, int chipLength) {
-    return new ChipLocationImpl(chipCoordinate, chipLength);
+  public static ChipLocation from(ChipCoordinate chipCoordinate) {
+    return new ChipLocationImpl(chipCoordinate);
   }
 
-  public static ChipLocation from(Coordinate coordinate, int chipLength) {
-    return new ChipLocationImpl(coordinate, chipLength);
+  public static ChipLocation from(Coordinate coordinate) {
+    return new ChipLocationImpl(coordinate);
   }
 
   ChipCoordinate chipCoordinate();

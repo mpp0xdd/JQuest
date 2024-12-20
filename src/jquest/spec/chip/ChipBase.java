@@ -12,7 +12,7 @@ public abstract class ChipBase implements Chip {
 
   public ChipBase(ChipImage image, ChipCoordinate chipCoordinate) {
     this.image = checkChipImage(image);
-    this.location = ChipLocation.from(chipCoordinate, length());
+    this.location = ChipLocation.from(chipCoordinate);
   }
 
   @Override
