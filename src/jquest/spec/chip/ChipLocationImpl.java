@@ -1,6 +1,5 @@
 package jquest.spec.chip;
 
-import java.util.function.UnaryOperator;
 import jquest.common.Coordinate;
 
 class ChipLocationImpl implements ChipLocation {
@@ -34,20 +33,5 @@ class ChipLocationImpl implements ChipLocation {
   @Override
   public Coordinate coordinate() {
     return coordinate;
-  }
-
-  @Override
-  public boolean overlapExactlyWithOtherChips() {
-    return coordinate.x() % Chip.LENGTH == 0 && coordinate.y() % Chip.LENGTH == 0;
-  }
-
-  @Override
-  public ChipLocation computeFromChipCoordinate(UnaryOperator<ChipCoordinate> operator) {
-    return new ChipLocationImpl(operator.apply(chipCoordinate));
-  }
-
-  @Override
-  public ChipLocation computeFromCoordinate(UnaryOperator<Coordinate> operator) {
-    return new ChipLocationImpl(operator.apply(coordinate));
   }
 }

@@ -17,9 +17,15 @@ public interface ChipLocation {
 
   Coordinate coordinate();
 
-  boolean overlapExactlyWithOtherChips();
+  default boolean overlapExactlyWithOtherChips() {
+    return coordinate().x() % Chip.LENGTH == 0 && coordinate().y() % Chip.LENGTH == 0;
+  }
 
-  ChipLocation computeFromChipCoordinate(UnaryOperator<ChipCoordinate> operator);
+  default ChipLocation computeFromChipCoordinate(UnaryOperator<ChipCoordinate> operator) {
+    return from(operator.apply(chipCoordinate()));
+  }
 
-  ChipLocation computeFromCoordinate(UnaryOperator<Coordinate> operator);
+  default ChipLocation computeFromCoordinate(UnaryOperator<Coordinate> operator) {
+    return from(operator.apply(coordinate()));
+  }
 }
