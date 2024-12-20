@@ -13,6 +13,7 @@ import jquest.spec.action.turn.LeftDirectional;
 import jquest.spec.action.turn.RightDirectional;
 import jquest.spec.action.turn.UpDirectional;
 import jquest.spec.chara.HeroImage.HeroIndex;
+import jquest.spec.chip.Chip;
 import jquest.spec.map.RpgMap;
 import jquest.spec.map.RpgMapConcernChip;
 
@@ -31,7 +32,8 @@ public interface RpgChara
   public static RpgChara mainCharaOf(RpgMap rpgMap) {
     BufferedImage image = ImageLoader.loadBufferedImage(RpgChara.class, "image/hero.gif");
     IndexableSpriteSheet<HeroIndex> spriteSheet =
-        IndexableSpriteSheet.create(image, 32, 32, 4, 2, HeroIndex.DOWNWARD_FIRST_STEP);
+        IndexableSpriteSheet.create(
+            image, Chip.LENGTH, Chip.LENGTH, 4, 2, HeroIndex.DOWNWARD_FIRST_STEP);
     HeroImage heroImage = new HeroImage(spriteSheet);
 
     Hero hero = new Hero(heroImage, rpgMap, rpgMap.startCoordinate());
