@@ -11,9 +11,8 @@ public interface RpgScene extends SubGameScreen, Updatable {
 
   public static RpgScene prologue() {
     RpgMap rpgMap = RpgMap.castle();
-    RpgChara mainChara = RpgChara.mainCharaOf(rpgMap, ChipCoordinate.at(1, 1));
-    rpgMap.setMainChara(mainChara);
 
+    rpgMap.setMainChara(RpgChara.mainCharaOf(rpgMap, ChipCoordinate.at(1, 1)));
     rpgMap.addNonPlayerRpgChara(RpgChara.kingOf(rpgMap, ChipCoordinate.at(5, 2)));
 
     return new RpgSceneImpl(rpgMap);
