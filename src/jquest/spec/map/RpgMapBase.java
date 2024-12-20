@@ -4,10 +4,10 @@ import java.awt.Graphics;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import jquest.common.Coordinate;
 import jquest.spec.chara.RpgChara;
+import jquest.spec.chip.Chip;
 import jquest.spec.chip.ChipCoordinate;
 import jquest.spec.chip.ChipLocation;
 
@@ -42,20 +42,12 @@ abstract class RpgMapBase implements RpgMap {
 
     @Override
     public int width() {
-      return Stream.iterate(ChipCoordinate.ZERO, ChipCoordinate::right)
-          .limit(columns())
-          .map(mapChips::get)
-          .mapToInt(MapChip::length)
-          .sum();
+      return columns() * Chip.LENGTH;
     }
 
     @Override
     public int height() {
-      return Stream.iterate(ChipCoordinate.ZERO, ChipCoordinate::down)
-          .limit(rows())
-          .map(mapChips::get)
-          .mapToInt(MapChip::length)
-          .sum();
+      return rows() * Chip.LENGTH;
     }
 
     @Override
@@ -106,27 +98,13 @@ abstract class RpgMapBase implements RpgMap {
 
   @Override
   public int width() {
-    return rowMapChipsStream(0).mapToInt(MapChip::length).sum();
+    return columns() * Chip.LENGTH;
   }
 
   @Override
   public int height() {
-    return columnMapChipsStream(0).mapToInt(MapChip::length).sum();
+    return rows() * Chip.LENGTH;
   }
 
   protected abstract void initialize();
-
-  private Stream<MapChip> columnMapChipsStream(int x) {
-    return IntStream //
-        .range(0, rows())
-        .mapToObj(y -> ChipCoordinate.at(x, y))
-        .map(mapChips::get);
-  }
-
-  private Stream<MapChip> rowMapChipsStream(int y) {
-    return IntStream //
-        .range(0, columns())
-        .mapToObj(x -> ChipCoordinate.at(x, y))
-        .map(mapChips::get);
-  }
 }
