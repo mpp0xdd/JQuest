@@ -3,9 +3,9 @@ package jquest.spec.chara;
 import jquest.spec.chip.ChipCoordinate;
 import jquest.spec.map.RpgMap;
 
-final class Hero extends RpgCharaBase {
+class DefaultRpgChara extends RpgCharaBase {
 
-  public Hero(RpgCharaChipImage image, RpgMap rpgMap, ChipCoordinate coordinate) {
+  public DefaultRpgChara(RpgCharaChipImage image, RpgMap rpgMap, ChipCoordinate coordinate) {
     super(image, rpgMap, coordinate);
   }
 
