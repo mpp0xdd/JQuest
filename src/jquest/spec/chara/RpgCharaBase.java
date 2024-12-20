@@ -1,7 +1,9 @@
 package jquest.spec.chara;
 
+import java.util.stream.Stream;
 import jquest.common.Velocity;
 import jquest.spec.chip.ChipCoordinate;
+import jquest.spec.chip.ChipLocation;
 import jquest.spec.map.RpgMap;
 import jquest.spec.map.RpgMapConcernChipBase;
 
@@ -16,29 +18,65 @@ abstract class RpgCharaBase extends RpgMapConcernChipBase implements RpgChara {
   @Override
   public void moveUp() {
     turnUp();
-    computeLocationFromCoordinate(coord -> coord.plus(Velocity.of(0, -speed)));
+
+    ChipLocation computedLocation =
+        location().computeFromCoordinate(coord -> coord.plus(Velocity.of(0, -speed)));
+    if (cannotMoveAt(computedLocation)) {
+      return;
+    }
+
+    computeLocation(location -> computedLocation);
   }
 
   @Override
   public void moveDown() {
     turnDown();
-    computeLocationFromCoordinate(coord -> coord.plus(Velocity.of(0, speed)));
+
+    ChipLocation computedLocation =
+        location().computeFromCoordinate(coord -> coord.plus(Velocity.of(0, speed)));
+    if (cannotMoveAt(computedLocation)) {
+      return;
+    }
+
+    computeLocation(location -> computedLocation);
   }
 
   @Override
   public void moveLeft() {
     turnLeft();
-    computeLocationFromCoordinate(coord -> coord.plus(Velocity.of(-speed, 0)));
+
+    ChipLocation computedLocation =
+        location().computeFromCoordinate(coord -> coord.plus(Velocity.of(-speed, 0)));
+    if (cannotMoveAt(computedLocation)) {
+      return;
+    }
+
+    computeLocation(location -> computedLocation);
   }
 
   @Override
   public void moveRight() {
     turnRight();
-    computeLocationFromCoordinate(coord -> coord.plus(Velocity.of(speed, 0)));
+
+    ChipLocation computedLocation =
+        location().computeFromCoordinate(coord -> coord.plus(Velocity.of(speed, 0)));
+    if (cannotMoveAt(computedLocation)) {
+      return;
+    }
+
+    computeLocation(location -> computedLocation);
   }
 
   @Override
   protected RpgCharaChipImage image() {
     return (RpgCharaChipImage) super.image();
+  }
+
+  private boolean cannotMoveAt(Stream<ChipCoordinate> destinations) {
+    return destinations.anyMatch(rpgMap()::isBlockedOff);
+  }
+
+  private boolean cannotMoveAt(ChipLocation location) {
+    return cannotMoveAt(location.overlappedChipCoordinates().stream());
   }
 }
