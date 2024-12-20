@@ -7,12 +7,14 @@ import java.util.Objects;
 import jglib.component.GameScreen;
 import jglib.util.model.Keystroke;
 import jquest.screen.AnimationRegistry.AnimationName;
+import jquest.spec.chara.RpgChara;
 import jquest.spec.scene.RpgScene;
 
 public class MainScreen extends GameScreen {
 
   private enum MainScreenAnimationName implements AnimationName {
     MAIN_CHARA_WALKING,
+    NON_PLAYER_CHARA_WALKING,
   }
 
   private Keystroke wKey = Keystroke.RELEASED;
@@ -49,7 +51,17 @@ public class MainScreen extends GameScreen {
               rpgScene.mainChara().foot();
               repaint();
             }));
+    animationRegistry.register(
+        MainScreenAnimationName.NON_PLAYER_CHARA_WALKING,
+        new Animation(
+            () -> {
+              rpgScene.nonPlayerCharas().forEach(RpgChara::foot);
+              repaint();
+            }));
+
     animationRegistry.scheduleAnimation(MainScreenAnimationName.MAIN_CHARA_WALKING, 0, 300L);
+    animationRegistry.scheduleAnimation(
+        MainScreenAnimationName.NON_PLAYER_CHARA_WALKING, 30L, 300L);
   }
 
   @Override
