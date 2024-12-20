@@ -65,7 +65,7 @@ abstract class RpgMapBase implements RpgMap {
 
   private final int x, y;
   private RpgChara mainChara;
-  private final List<RpgChara> nonPlayerRpgCharas = new ArrayList<>();
+  private final List<RpgChara> nonPlayerCharas = new ArrayList<>();
   protected final Map<ChipCoordinate, MapChip> mapChips = new HashMap<>();
 
   public RpgMapBase(int x, int y) {
@@ -90,13 +90,13 @@ abstract class RpgMapBase implements RpgMap {
   }
 
   @Override
-  public void addNonPlayerRpgChara(RpgChara chara) {
-    nonPlayerRpgCharas.add(chara);
+  public void addNonPlayerChara(RpgChara chara) {
+    nonPlayerCharas.add(chara);
   }
 
   @Override
-  public List<RpgChara> nonPlayerRpgCharas() {
-    return Collections.unmodifiableList(nonPlayerRpgCharas);
+  public List<RpgChara> nonPlayerCharas() {
+    return Collections.unmodifiableList(nonPlayerCharas);
   }
 
   @Override
