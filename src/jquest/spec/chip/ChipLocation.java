@@ -7,11 +7,19 @@ import jquest.common.Coordinate;
 public interface ChipLocation {
 
   public static ChipLocation from(ChipCoordinate chipCoordinate) {
-    return new ChipLocationImpl(chipCoordinate);
+    return new ChipLocationImpl(chipCoordinate, toCoordinate(chipCoordinate));
   }
 
   public static ChipLocation from(Coordinate coordinate) {
-    return new ChipLocationImpl(coordinate);
+    return new ChipLocationImpl(toChipCoordinate(coordinate), coordinate);
+  }
+
+  private static Coordinate toCoordinate(ChipCoordinate chipCoordinate) {
+    return Coordinate.at(chipCoordinate.x() * Chip.LENGTH, chipCoordinate.y() * Chip.LENGTH);
+  }
+
+  private static ChipCoordinate toChipCoordinate(Coordinate coordinate) {
+    return ChipCoordinate.at(coordinate.x() / Chip.LENGTH, coordinate.y() / Chip.LENGTH);
   }
 
   ChipCoordinate chipCoordinate();
