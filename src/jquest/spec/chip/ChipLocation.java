@@ -17,6 +17,8 @@ public interface ChipLocation {
 
   Coordinate coordinate();
 
+  boolean overlapExactlyWithOtherChips();
+
   ChipLocation computeFromChipCoordinate(UnaryOperator<ChipCoordinate> operator);
 
   ChipLocation computeFromCoordinate(UnaryOperator<Coordinate> operator);

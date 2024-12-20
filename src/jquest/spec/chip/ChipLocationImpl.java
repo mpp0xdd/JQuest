@@ -37,6 +37,11 @@ class ChipLocationImpl implements ChipLocation {
   }
 
   @Override
+  public boolean overlapExactlyWithOtherChips() {
+    return coordinate.x() % Chip.LENGTH == 0 && coordinate.y() % Chip.LENGTH == 0;
+  }
+
+  @Override
   public ChipLocation computeFromChipCoordinate(UnaryOperator<ChipCoordinate> operator) {
     return new ChipLocationImpl(operator.apply(chipCoordinate));
   }
