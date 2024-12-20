@@ -18,11 +18,6 @@ final class Castle extends RpgMapBaseForIntMapData {
   }
 
   @Override
-  public ChipCoordinate startCoordinate() {
-    return ChipCoordinate.at(1, 1);
-  }
-
-  @Override
   public boolean isBlockedOff(ChipCoordinate coordinate) {
     return mapData(coordinate.x(), coordinate.y()) //
         .filter(data -> data == 1)

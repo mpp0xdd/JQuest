@@ -33,8 +33,6 @@ public interface RpgMap extends Cellular, Rectangular {
 
   void setMainChara(RpgChara chara);
 
-  ChipCoordinate startCoordinate();
-
   boolean isBlockedOff(ChipCoordinate coordinate);
 
   Viewport viewport();
