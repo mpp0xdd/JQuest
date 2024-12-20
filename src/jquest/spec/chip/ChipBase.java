@@ -36,8 +36,8 @@ public abstract class ChipBase implements Chip {
   }
 
   @Override
-  public int length() {
-    return 32;
+  public final int length() {
+    return Chip.super.length();
   }
 
   protected ChipImage image() {
