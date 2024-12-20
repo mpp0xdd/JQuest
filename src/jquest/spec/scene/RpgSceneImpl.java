@@ -1,5 +1,6 @@
 package jquest.spec.scene;
 
+import java.util.List;
 import jquest.spec.chara.RpgChara;
 import jquest.spec.map.RpgMap;
 
@@ -19,5 +20,10 @@ class RpgSceneImpl implements RpgScene {
   @Override
   public RpgChara mainChara() {
     return rpgMap.mainChara();
+  }
+
+  @Override
+  public List<RpgChara> nonPlayerCharas() {
+    return rpgMap.nonPlayerCharas();
   }
 }

@@ -1,6 +1,7 @@
 package jquest.spec.scene;
 
 import java.awt.Graphics;
+import java.util.List;
 import jglib.component.SubGameScreen;
 import jglib.util.spec.Updatable;
 import jquest.spec.chara.RpgChara;
@@ -22,11 +23,13 @@ public interface RpgScene extends SubGameScreen, Updatable {
 
   RpgChara mainChara();
 
+  List<RpgChara> nonPlayerCharas();
+
   @Override
   default void draw(Graphics g) {
     rpgMap().viewport().draw(g);
-    rpgMap().nonPlayerCharas().forEach(chara -> chara.draw(g));
-    rpgMap().mainChara().draw(g);
+    nonPlayerCharas().forEach(chara -> chara.draw(g));
+    mainChara().draw(g);
   }
 
   @Override
