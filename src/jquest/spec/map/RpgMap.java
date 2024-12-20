@@ -34,9 +34,9 @@ public interface RpgMap extends Cellular, Rectangular {
 
   void setMainChara(RpgChara chara);
 
-  void addRpgChara(RpgChara chara);
+  void addNonPlayerRpgChara(RpgChara chara);
 
-  List<RpgChara> rpgCharas();
+  List<RpgChara> nonPlayerRpgCharas();
 
   boolean isBlockedOff(ChipCoordinate coordinate);
 
