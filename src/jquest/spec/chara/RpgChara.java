@@ -36,8 +36,7 @@ public interface RpgChara
             image, Chip.LENGTH, Chip.LENGTH, 4, 2, DefaultRpgCharaIndex.DOWNWARD_FIRST_STEP);
     RpgCharaChipImage charaChipImage = new DefaultRpgCharaChipImage(spriteSheet);
 
-    Hero hero = new Hero(charaChipImage, rpgMap, coordinate);
-    return hero;
+    return new Hero(charaChipImage, rpgMap, coordinate);
   }
 
   public static RpgChara kingOf(RpgMap rpgMap, ChipCoordinate coordinate) {
@@ -47,7 +46,6 @@ public interface RpgChara
             image, Chip.LENGTH, Chip.LENGTH, 4, 2, DefaultRpgCharaIndex.DOWNWARD_FIRST_STEP);
     RpgCharaChipImage charaChipImage = new DefaultRpgCharaChipImage(spriteSheet);
 
-    King king = new King(charaChipImage, rpgMap, coordinate);
-    return king;
+    return new King(charaChipImage, rpgMap, coordinate);
   }
 }
