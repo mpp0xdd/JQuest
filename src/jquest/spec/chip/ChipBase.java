@@ -3,7 +3,6 @@ package jquest.spec.chip;
 import java.awt.Graphics;
 import java.util.Objects;
 import java.util.function.UnaryOperator;
-import jquest.common.Coordinate;
 
 public abstract class ChipBase implements Chip {
 
@@ -46,13 +45,5 @@ public abstract class ChipBase implements Chip {
 
   protected ChipLocation computeLocation(UnaryOperator<ChipLocation> operator) {
     return location = operator.apply(location);
-  }
-
-  protected ChipLocation computeLocationFromChipCoordinate(UnaryOperator<ChipCoordinate> operator) {
-    return location = location.computeFromChipCoordinate(operator);
-  }
-
-  protected ChipLocation computeLocationFromCoordinate(UnaryOperator<Coordinate> operator) {
-    return location = location.computeFromCoordinate(operator);
   }
 }
