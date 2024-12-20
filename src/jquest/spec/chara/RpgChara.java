@@ -13,6 +13,7 @@ import jquest.spec.action.turn.LeftDirectional;
 import jquest.spec.action.turn.RightDirectional;
 import jquest.spec.action.turn.UpDirectional;
 import jquest.spec.chara.HeroImage.HeroIndex;
+import jquest.spec.chara.KingImage.KingIndex;
 import jquest.spec.chip.Chip;
 import jquest.spec.chip.ChipCoordinate;
 import jquest.spec.map.RpgMap;
@@ -39,5 +40,16 @@ public interface RpgChara
 
     Hero hero = new Hero(heroImage, rpgMap, coordinate);
     return hero;
+  }
+
+  public static RpgChara kingOf(RpgMap rpgMap, ChipCoordinate coordinate) {
+    BufferedImage image = ImageLoader.loadBufferedImage(RpgChara.class, "image/king.gif");
+    IndexableSpriteSheet<KingIndex> spriteSheet =
+        IndexableSpriteSheet.create(
+            image, Chip.LENGTH, Chip.LENGTH, 4, 2, KingIndex.DOWNWARD_FIRST_STEP);
+    KingImage kingImage = new KingImage(spriteSheet);
+
+    King king = new King(kingImage, rpgMap, coordinate);
+    return king;
   }
 }

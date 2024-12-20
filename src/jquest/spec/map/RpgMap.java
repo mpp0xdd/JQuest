@@ -1,5 +1,6 @@
 package jquest.spec.map;
 
+import java.util.List;
 import jglib.util.spec.Cellular;
 import jglib.util.spec.Drawable;
 import jglib.util.spec.Rectangular;
@@ -32,6 +33,10 @@ public interface RpgMap extends Cellular, Rectangular {
   RpgChara mainChara();
 
   void setMainChara(RpgChara chara);
+
+  void addRpgChara(RpgChara chara);
+
+  List<RpgChara> rpgCharas();
 
   boolean isBlockedOff(ChipCoordinate coordinate);
 

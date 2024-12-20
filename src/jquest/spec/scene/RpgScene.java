@@ -14,6 +14,8 @@ public interface RpgScene extends SubGameScreen, Updatable {
     RpgChara mainChara = RpgChara.mainCharaOf(rpgMap, ChipCoordinate.at(1, 1));
     rpgMap.setMainChara(mainChara);
 
+    rpgMap.addRpgChara(RpgChara.kingOf(rpgMap, ChipCoordinate.at(5, 2)));
+
     return new RpgSceneImpl(rpgMap);
   }
 
@@ -24,7 +26,8 @@ public interface RpgScene extends SubGameScreen, Updatable {
   @Override
   default void draw(Graphics g) {
     rpgMap().viewport().draw(g);
-    mainChara().draw(g);
+    // mainChara().draw(g);
+    rpgMap().rpgCharas().forEach(chara -> chara.draw(g));
   }
 
   @Override

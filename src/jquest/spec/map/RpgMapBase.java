@@ -1,7 +1,10 @@
 package jquest.spec.map;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -62,6 +65,7 @@ abstract class RpgMapBase implements RpgMap {
 
   private final int x, y;
   private RpgChara mainChara;
+  private final List<RpgChara> rpgCharas = new ArrayList<>();
   protected final Map<ChipCoordinate, MapChip> mapChips = new HashMap<>();
 
   public RpgMapBase(int x, int y) {
@@ -82,7 +86,17 @@ abstract class RpgMapBase implements RpgMap {
 
   @Override
   public void setMainChara(RpgChara chara) {
-    mainChara = chara;
+    addRpgChara(mainChara = chara);
+  }
+
+  @Override
+  public void addRpgChara(RpgChara chara) {
+    rpgCharas.add(chara);
+  }
+
+  @Override
+  public List<RpgChara> rpgCharas() {
+    return Collections.unmodifiableList(rpgCharas);
   }
 
   @Override
