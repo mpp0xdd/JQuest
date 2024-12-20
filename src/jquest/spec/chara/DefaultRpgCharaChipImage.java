@@ -4,11 +4,11 @@ import java.awt.Graphics;
 import java.util.Objects;
 import jglib.util.image.IndexableSpriteSheet;
 
-final class KingImage extends RpgCharaChipImageBase {
+class DefaultRpgCharaChipImage extends RpgCharaChipImageBase {
 
   private final IndexableSpriteSheet<DefaultRpgCharaIndex> image;
 
-  public KingImage(IndexableSpriteSheet<DefaultRpgCharaIndex> image) {
+  public DefaultRpgCharaChipImage(IndexableSpriteSheet<DefaultRpgCharaIndex> image) {
     this.image = Objects.requireNonNull(image);
   }
 

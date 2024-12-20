@@ -34,9 +34,9 @@ public interface RpgChara
     IndexableSpriteSheet<DefaultRpgCharaIndex> spriteSheet =
         IndexableSpriteSheet.create(
             image, Chip.LENGTH, Chip.LENGTH, 4, 2, DefaultRpgCharaIndex.DOWNWARD_FIRST_STEP);
-    HeroImage heroImage = new HeroImage(spriteSheet);
+    RpgCharaChipImage charaChipImage = new DefaultRpgCharaChipImage(spriteSheet);
 
-    Hero hero = new Hero(heroImage, rpgMap, coordinate);
+    Hero hero = new Hero(charaChipImage, rpgMap, coordinate);
     return hero;
   }
 
@@ -45,9 +45,9 @@ public interface RpgChara
     IndexableSpriteSheet<DefaultRpgCharaIndex> spriteSheet =
         IndexableSpriteSheet.create(
             image, Chip.LENGTH, Chip.LENGTH, 4, 2, DefaultRpgCharaIndex.DOWNWARD_FIRST_STEP);
-    KingImage kingImage = new KingImage(spriteSheet);
+    RpgCharaChipImage charaChipImage = new DefaultRpgCharaChipImage(spriteSheet);
 
-    King king = new King(kingImage, rpgMap, coordinate);
+    King king = new King(charaChipImage, rpgMap, coordinate);
     return king;
   }
 }

@@ -5,7 +5,7 @@ import jquest.spec.map.RpgMap;
 
 final class King extends RpgCharaBase {
 
-  public King(KingImage image, RpgMap rpgMap, ChipCoordinate coordinate) {
+  public King(RpgCharaChipImage image, RpgMap rpgMap, ChipCoordinate coordinate) {
     super(image, rpgMap, coordinate);
   }
 
