@@ -1,6 +1,5 @@
 package jquest.spec.chara;
 
-import java.util.stream.Stream;
 import jquest.common.Velocity;
 import jquest.spec.chip.ChipCoordinate;
 import jquest.spec.chip.ChipLocation;
@@ -97,12 +96,8 @@ abstract class RpgCharaBase extends RpgMapConcernChipBase implements RpgChara {
     return (RpgCharaChipImage) super.image();
   }
 
-  private boolean cannotMoveAt(Stream<ChipCoordinate> destinations) {
-    return destinations.anyMatch(rpgMap()::isBlockedOff);
-  }
-
   private boolean cannotMoveAt(ChipLocation location) {
-    return cannotMoveAt(location.overlappedChipCoordinates().stream())
+    return location.overlappedChipCoordinates().stream().anyMatch(rpgMap()::isBlockedOff)
         || rpgMap().nonPlayerCharas().stream()
             .map(RpgChara::location)
             .anyMatch(npcLocation -> npcLocation.intersects(location));
