@@ -2,7 +2,8 @@ package jquest.spec.command;
 
 import jquest.spec.chara.RpgChara;
 
-public class RpgCharaWalkCommand extends RpgCharaCommandBase<RpgChara> {
+public class RpgCharaWalkCommand extends RpgCharaCommandBase<RpgChara>
+    implements UndoableRpgCommand, RedoableRpgCommand {
 
   public RpgCharaWalkCommand(RpgChara rpgChara) {
     super(rpgChara);
