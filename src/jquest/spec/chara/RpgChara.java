@@ -29,7 +29,7 @@ public interface RpgChara
         RightDirectional,
         FootStompable {
 
-  public static RpgChara mainCharaOf(RpgMap rpgMap, ChipCoordinate coordinate) {
+  public static RpgChara heroOf(RpgMap rpgMap, ChipCoordinate coordinate) {
     BufferedImage image = ImageLoader.loadBufferedImage(RpgChara.class, "image/hero.gif");
     IndexableSpriteSheet<DefaultRpgCharaIndex> spriteSheet =
         IndexableSpriteSheet.create(
