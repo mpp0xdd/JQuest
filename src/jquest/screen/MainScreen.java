@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.util.Objects;
 import jglib.component.GameScreen;
 import jglib.util.model.Keystroke;
+import jquest.spec.chara.RpgChara;
 import jquest.spec.command.RpgCharaWalkCommand;
 import jquest.spec.command.RpgCommand;
 import jquest.spec.scene.RpgScene;
@@ -13,7 +14,8 @@ import jquest.spec.scene.RpgScene;
 public class MainScreen extends GameScreen {
 
   private enum MainScreenAnimationName implements AnimationName {
-    MAIN_CHARA_WALKING,
+    MAIN_CHARA_FOOT_STAMPING,
+    NON_PLAYER_CHARA_FOOT_STAMPING,
     NON_PLAYER_CHARA_WALKING,
   }
 
@@ -45,10 +47,17 @@ public class MainScreen extends GameScreen {
 
     animationRegistry = new AnimationRegistry<>(MainScreenAnimationName.class);
     animationRegistry.register(
-        MainScreenAnimationName.MAIN_CHARA_WALKING,
+        MainScreenAnimationName.MAIN_CHARA_FOOT_STAMPING,
         new Animation(
             () -> {
               rpgScene.mainChara().foot();
+              repaint();
+            }));
+    animationRegistry.register(
+        MainScreenAnimationName.NON_PLAYER_CHARA_FOOT_STAMPING,
+        new Animation(
+            () -> {
+              rpgScene.nonPlayerCharas().forEach(RpgChara::foot);
               repaint();
             }));
     animationRegistry.register(
@@ -61,7 +70,9 @@ public class MainScreen extends GameScreen {
               repaint();
             }));
 
-    animationRegistry.scheduleAnimation(MainScreenAnimationName.MAIN_CHARA_WALKING, 0, 300L);
+    animationRegistry.scheduleAnimation(MainScreenAnimationName.MAIN_CHARA_FOOT_STAMPING, 0, 300L);
+    animationRegistry.scheduleAnimation(
+        MainScreenAnimationName.NON_PLAYER_CHARA_FOOT_STAMPING, 30L, 300L);
     animationRegistry.scheduleAnimation(
         MainScreenAnimationName.NON_PLAYER_CHARA_WALKING, 30L, 300L);
   }

@@ -13,8 +13,6 @@ public class RpgCharaWalkCommand extends RpgCharaCommandBase<RpgChara> {
 
   @Override
   public void execute() {
-    rpgChara().foot();
-
     if (RANDOM.nextInt(100) >= 20) {
       return;
     }
