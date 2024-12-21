@@ -3,11 +3,11 @@ package jquest.spec.command;
 import java.util.Random;
 import jquest.spec.chara.RpgChara;
 
-public class RpgCharaWalkCommand extends RpgCharaCommandBase<RpgChara> {
+public class RpgCharaRandomWalkCommand extends RpgCharaCommandBase<RpgChara> {
 
   private static final Random RANDOM = new Random();
 
-  public RpgCharaWalkCommand(RpgChara rpgChara) {
+  public RpgCharaRandomWalkCommand(RpgChara rpgChara) {
     super(rpgChara);
   }
 

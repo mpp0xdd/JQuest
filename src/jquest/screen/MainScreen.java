@@ -7,7 +7,7 @@ import java.util.Objects;
 import jglib.component.GameScreen;
 import jglib.util.model.Keystroke;
 import jquest.spec.chara.RpgChara;
-import jquest.spec.command.RpgCharaWalkCommand;
+import jquest.spec.command.RpgCharaRandomWalkCommand;
 import jquest.spec.command.RpgCommand;
 import jquest.spec.scene.RpgScene;
 
@@ -65,7 +65,7 @@ public class MainScreen extends GameScreen {
         new Animation(
             () -> {
               rpgScene.nonPlayerCharas().stream()
-                  .map(RpgCharaWalkCommand::new)
+                  .map(RpgCharaRandomWalkCommand::new)
                   .forEach(RpgCommand::execute);
               repaint();
             }));
