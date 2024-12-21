@@ -38,6 +38,8 @@ public interface RpgMap extends Cellular, Rectangular {
 
   List<RpgChara> nonPlayerCharas();
 
+  List<RpgChara> allCharas();
+
   boolean isBlockedOff(ChipCoordinate coordinate);
 
   Viewport viewport();

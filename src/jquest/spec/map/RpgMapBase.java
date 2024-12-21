@@ -100,6 +100,14 @@ abstract class RpgMapBase implements RpgMap {
   }
 
   @Override
+  public List<RpgChara> allCharas() {
+    List<RpgChara> result = new ArrayList<>();
+    result.add(mainChara());
+    result.addAll(nonPlayerCharas());
+    return Collections.unmodifiableList(result);
+  }
+
+  @Override
   public int x() {
     return x;
   }
