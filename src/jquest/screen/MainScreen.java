@@ -7,7 +7,8 @@ import java.util.Objects;
 import jglib.component.GameScreen;
 import jglib.util.model.Keystroke;
 import jquest.screen.AnimationRegistry.AnimationName;
-import jquest.spec.chara.RpgChara;
+import jquest.spec.command.RpgCharaWalkCommand;
+import jquest.spec.command.RpgCommand;
 import jquest.spec.scene.RpgScene;
 
 public class MainScreen extends GameScreen {
@@ -55,7 +56,9 @@ public class MainScreen extends GameScreen {
         MainScreenAnimationName.NON_PLAYER_CHARA_WALKING,
         new Animation(
             () -> {
-              rpgScene.nonPlayerCharas().forEach(RpgChara::foot);
+              rpgScene.nonPlayerCharas().stream()
+                  .map(RpgCharaWalkCommand::new)
+                  .forEach(RpgCommand::execute);
               repaint();
             }));
 
