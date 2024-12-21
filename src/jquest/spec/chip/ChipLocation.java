@@ -5,9 +5,10 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.UnaryOperator;
+import jglib.util.spec.Square;
 import jquest.common.Coordinate;
 
-public interface ChipLocation {
+public interface ChipLocation extends Square {
 
   public static ChipLocation from(ChipCoordinate chipCoordinate) {
     return new ChipLocationImpl(chipCoordinate, toCoordinate(chipCoordinate));
@@ -23,6 +24,21 @@ public interface ChipLocation {
 
   private static ChipCoordinate toChipCoordinate(Coordinate coordinate) {
     return ChipCoordinate.at(coordinate.x() / Chip.LENGTH, coordinate.y() / Chip.LENGTH);
+  }
+
+  @Override
+  default int x() {
+    return coordinate().x();
+  }
+
+  @Override
+  default int y() {
+    return coordinate().y();
+  }
+
+  @Override
+  default int length() {
+    return Chip.LENGTH;
   }
 
   ChipCoordinate chipCoordinate();
@@ -47,16 +63,10 @@ public interface ChipLocation {
       return Collections.singleton(chipCoordinate());
     }
 
-    Rectangle thisChipRect =
-        new Rectangle(coordinate().x(), coordinate().y(), Chip.LENGTH, Chip.LENGTH);
+    Rectangle thisChipRect = asRectangle();
 
     ChipLocation upperLeftChipLocation = ChipLocation.from(chipCoordinate());
-    Rectangle upperLeftChipRect =
-        new Rectangle(
-            upperLeftChipLocation.coordinate().x(),
-            upperLeftChipLocation.coordinate().y(),
-            Chip.LENGTH,
-            Chip.LENGTH);
+    Rectangle upperLeftChipRect = upperLeftChipLocation.asRectangle();
 
     Rectangle boundRect = thisChipRect.union(upperLeftChipRect);
     if (overlapExactlyWithXCoordinateOfOtherChips()) {
