@@ -14,33 +14,45 @@ class Animation {
   private final Frame frame;
 
   private final Timer scheduler;
+  private long period;
   private TimerTask animation;
 
   public Animation(Frame frame) {
     this.frame = Objects.requireNonNull(frame);
 
     scheduler = new Timer();
+    period = -1L;
     animation = null;
   }
 
+  public boolean isPlaying() {
+    return Objects.nonNull(animation);
+  }
+
+  public boolean onPause() {
+    return !isPlaying() && period >= 0;
+  }
+
   public void schedule(long delay, long period) {
-    prepareAnimation();
-    scheduler.schedule(animation, delay, period);
+    prepareAnimation(period);
+    startAnimation(delay);
   }
 
   public void pause() {
-    throw new UnsupportedOperationException();
+    throwIfIsNotPlaying();
+    animation.cancel();
+    animation = null;
   }
 
   public void resume() {
-    throw new UnsupportedOperationException();
+    throwIfNotOnPause();
+    startAnimation(0);
   }
 
-  private void prepareAnimation() {
-    if (Objects.nonNull(animation)) {
-      throw new IllegalStateException("Animation is already scheduled.");
-    }
-
+  private void prepareAnimation(long period) {
+    throwIfIsPlaying();
+    throwIfOnPause();
+    this.period = period;
     animation =
         new TimerTask() {
           @Override
@@ -48,5 +60,33 @@ class Animation {
             frame.next();
           }
         };
+  }
+
+  private void startAnimation(long delay) {
+    scheduler.schedule(animation, delay, period);
+  }
+
+  private void throwIfIsPlaying() {
+    if (isPlaying()) {
+      throw new IllegalStateException("Animation is playing");
+    }
+  }
+
+  private void throwIfIsNotPlaying() {
+    if (!isPlaying()) {
+      throw new IllegalStateException("Animation is not playing");
+    }
+  }
+
+  private void throwIfOnPause() {
+    if (onPause()) {
+      throw new IllegalStateException("Animation is not on pause");
+    }
+  }
+
+  private void throwIfNotOnPause() {
+    if (!onPause()) {
+      throw new IllegalStateException("Animation is not on pause");
+    }
   }
 }
