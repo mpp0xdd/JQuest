@@ -95,4 +95,13 @@ public interface ChipLocation extends Square {
   default ChipLocation computeFromCoordinate(UnaryOperator<Coordinate> operator) {
     return from(operator.apply(coordinate()));
   }
+
+  @Override
+  int hashCode();
+
+  @Override
+  boolean equals(Object obj);
+
+  @Override
+  String toString();
 }
