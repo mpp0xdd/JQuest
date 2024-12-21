@@ -64,9 +64,7 @@ public interface ChipLocation extends Square {
     }
 
     Rectangle thisChipRect = asRectangle();
-
-    ChipLocation upperLeftChipLocation = ChipLocation.from(chipCoordinate());
-    Rectangle upperLeftChipRect = upperLeftChipLocation.asRectangle();
+    Rectangle upperLeftChipRect = ChipLocation.from(chipCoordinate()).asRectangle();
 
     Rectangle boundRect = thisChipRect.union(upperLeftChipRect);
     if (overlapExactlyWithXCoordinateOfOtherChips()) {
