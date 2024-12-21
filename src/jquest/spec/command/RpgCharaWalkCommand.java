@@ -5,24 +5,23 @@ import jquest.spec.chara.RpgChara;
 
 public class RpgCharaWalkCommand extends RpgCharaCommandBase<RpgChara> {
 
-  private Random random;
+  private static final Random RANDOM = new Random();
 
   public RpgCharaWalkCommand(RpgChara rpgChara) {
     super(rpgChara);
-    random = new Random();
   }
 
   @Override
   public void execute() {
-    if (random.nextInt(100) >= 20) {
+    if (RANDOM.nextInt(100) >= 20) {
       // return;
     }
 
-    switch (random.nextInt(4)) {
+    switch (RANDOM.nextInt(4)) {
       case 0 -> rpgChara().moveUp();
       case 1 -> rpgChara().moveDown();
       case 2 -> rpgChara().moveLeft();
-      case 4 -> rpgChara().moveRight();
+      case 3 -> rpgChara().moveRight();
     }
   }
 }
