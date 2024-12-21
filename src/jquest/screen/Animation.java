@@ -34,7 +34,10 @@ class Animation {
   }
 
   public void schedule(long delay, long period) {
-    prepareAnimation(period);
+    throwIfIsPlaying();
+    prepareAnimation();
+
+    this.period = period;
     startAnimation(delay);
   }
 
@@ -46,13 +49,11 @@ class Animation {
 
   public void resume() {
     throwIfNotOnPause();
+    prepareAnimation();
     startAnimation(0);
   }
 
-  private void prepareAnimation(long period) {
-    throwIfIsPlaying();
-    throwIfOnPause();
-    this.period = period;
+  private void prepareAnimation() {
     animation =
         new TimerTask() {
           @Override
