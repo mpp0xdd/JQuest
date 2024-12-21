@@ -59,6 +59,14 @@ public interface ChipLocation {
             Chip.LENGTH);
 
     Rectangle boundRect = thisChipRect.union(upperLeftChipRect);
+    if (overlapExactlyWithXCoordinateOfOtherChips()) {
+      boundRect.setSize(boundRect.width - 1, boundRect.height);
+    } else if (overlapExactlyWithYCoordinateOfOtherChips()) {
+      boundRect.setSize(boundRect.width, boundRect.height - 1);
+    } else {
+      // nop
+    }
+
     int minX = (int) boundRect.getMinX();
     int minY = (int) boundRect.getMinY();
     int maxX = (int) boundRect.getMaxX();
