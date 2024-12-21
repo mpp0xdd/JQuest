@@ -27,6 +27,14 @@ class Animation {
     timer.schedule(timerTask, delay, period);
   }
 
+  public void pause() {
+    throw new UnsupportedOperationException();
+  }
+
+  public void resume() {
+    throw new UnsupportedOperationException();
+  }
+
   private void prepareTimerTask() {
     if (Objects.nonNull(timerTask)) {
       throw new IllegalStateException("Animation is already scheduled.");
