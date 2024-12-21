@@ -29,8 +29,17 @@ public interface ChipLocation {
 
   Coordinate coordinate();
 
+  default boolean overlapExactlyWithXCoordinateOfOtherChips() {
+    return coordinate().x() % Chip.LENGTH == 0;
+  }
+
+  default boolean overlapExactlyWithYCoordinateOfOtherChips() {
+    return coordinate().y() % Chip.LENGTH == 0;
+  }
+
   default boolean overlapExactlyWithOtherChips() {
-    return coordinate().x() % Chip.LENGTH == 0 && coordinate().y() % Chip.LENGTH == 0;
+    return overlapExactlyWithXCoordinateOfOtherChips()
+        && overlapExactlyWithYCoordinateOfOtherChips();
   }
 
   default Set<ChipCoordinate> overlappedChipCoordinates() {
