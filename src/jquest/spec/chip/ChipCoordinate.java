@@ -33,4 +33,7 @@ public interface ChipCoordinate {
 
   @Override
   boolean equals(Object obj);
+
+  @Override
+  String toString();
 }

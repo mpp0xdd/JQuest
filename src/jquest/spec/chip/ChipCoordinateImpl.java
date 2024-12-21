@@ -40,4 +40,9 @@ final class ChipCoordinateImpl implements ChipCoordinate {
     ChipCoordinateImpl other = (ChipCoordinateImpl) obj;
     return x == other.x && y == other.y;
   }
+
+  @Override
+  public String toString() {
+    return "ChipCoordinate [x=" + x + ", y=" + y + "]";
+  }
 }

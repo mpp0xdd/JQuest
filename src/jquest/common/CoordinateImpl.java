@@ -41,4 +41,9 @@ class CoordinateImpl implements Coordinate {
     CoordinateImpl other = (CoordinateImpl) obj;
     return x == other.x && y == other.y;
   }
+
+  @Override
+  public String toString() {
+    return "Coordinate [x=" + x + ", y=" + y + "]";
+  }
 }

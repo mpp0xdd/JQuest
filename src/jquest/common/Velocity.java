@@ -73,4 +73,7 @@ public interface Velocity {
 
   @Override
   boolean equals(Object obj);
+
+  @Override
+  String toString();
 }

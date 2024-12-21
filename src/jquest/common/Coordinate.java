@@ -25,4 +25,7 @@ public interface Coordinate {
 
   @Override
   boolean equals(Object obj);
+
+  @Override
+  String toString();
 }

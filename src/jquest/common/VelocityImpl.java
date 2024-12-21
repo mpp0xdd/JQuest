@@ -41,4 +41,9 @@ class VelocityImpl implements Velocity {
     VelocityImpl other = (VelocityImpl) obj;
     return x == other.x && y == other.y;
   }
+
+  @Override
+  public String toString() {
+    return "Velocity [x=" + x + ", y=" + y + "]";
+  }
 }
