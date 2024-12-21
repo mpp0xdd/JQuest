@@ -13,18 +13,19 @@ class Animation {
 
   private final Frame frame;
 
-  private final Timer timer;
-  private TimerTask timerTask;
+  private final Timer scheduler;
+  private TimerTask animation;
 
   public Animation(Frame frame) {
     this.frame = Objects.requireNonNull(frame);
-    timer = new Timer();
-    timerTask = null;
+
+    scheduler = new Timer();
+    animation = null;
   }
 
   public void schedule(long delay, long period) {
-    prepareTimerTask();
-    timer.schedule(timerTask, delay, period);
+    prepareAnimation();
+    scheduler.schedule(animation, delay, period);
   }
 
   public void pause() {
@@ -35,12 +36,12 @@ class Animation {
     throw new UnsupportedOperationException();
   }
 
-  private void prepareTimerTask() {
-    if (Objects.nonNull(timerTask)) {
+  private void prepareAnimation() {
+    if (Objects.nonNull(animation)) {
       throw new IllegalStateException("Animation is already scheduled.");
     }
 
-    timerTask =
+    animation =
         new TimerTask() {
           @Override
           public void run() {
