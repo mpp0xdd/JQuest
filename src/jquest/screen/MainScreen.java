@@ -6,7 +6,6 @@ import java.awt.event.KeyEvent;
 import java.util.Objects;
 import jglib.component.GameScreen;
 import jglib.util.model.Keystroke;
-import jquest.screen.AnimationRegistry.AnimationName;
 import jquest.spec.command.RpgCharaWalkCommand;
 import jquest.spec.command.RpgCommand;
 import jquest.spec.scene.RpgScene;

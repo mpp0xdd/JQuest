@@ -3,11 +3,8 @@ package jquest.screen;
 import java.util.EnumMap;
 import java.util.Objects;
 import java.util.Optional;
-import jquest.screen.AnimationRegistry.AnimationName;
 
 class AnimationRegistry<N extends Enum<N> & AnimationName> {
-
-  interface AnimationName {}
 
   private final EnumMap<N, Animation> animationRegistry;
 
