@@ -42,7 +42,7 @@ class Animation {
   }
 
   public void pause() {
-    throwIfIsNotPlaying();
+    throwIfOnPause();
     animation.cancel();
     animation = null;
   }
