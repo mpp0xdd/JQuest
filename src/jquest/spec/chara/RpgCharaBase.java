@@ -9,7 +9,7 @@ import jquest.spec.map.RpgMapConcernChipBase;
 
 abstract class RpgCharaBase extends RpgMapConcernChipBase implements RpgChara {
 
-  private int speed = 5;
+  private int speed = 8;
 
   public RpgCharaBase(RpgCharaChipImage image, RpgMap rpgMap, ChipCoordinate coordinate) {
     super(image, rpgMap, coordinate);
@@ -77,6 +77,9 @@ abstract class RpgCharaBase extends RpgMapConcernChipBase implements RpgChara {
   }
 
   private boolean cannotMoveAt(ChipLocation location) {
-    return cannotMoveAt(location.overlappedChipCoordinates().stream());
+    return cannotMoveAt(location.overlappedChipCoordinates().stream())
+        || rpgMap().nonPlayerCharas().stream()
+            .map(RpgChara::location)
+            .anyMatch(npcLocation -> npcLocation.intersects(location));
   }
 }
