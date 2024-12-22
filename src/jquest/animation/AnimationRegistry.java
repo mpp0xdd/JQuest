@@ -23,4 +23,12 @@ public final class AnimationRegistry<N extends Enum<N> & AnimationName> {
   public void scheduleAnimation(N name, long delay, long period) {
     animationOf(name).orElseThrow().schedule(delay, period);
   }
+
+  public void pauseIfPlaying(N name) {
+    animationOf(name).filter(Animation::isPlaying).ifPresent(Animation::pause);
+  }
+
+  public void resumeIfOnPause(N name) {
+    animationOf(name).filter(Animation::onPause).ifPresent(Animation::resume);
+  }
 }
