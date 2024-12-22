@@ -6,7 +6,7 @@ import java.util.List;
 
 public final class ImageValidator {
 
-  public static void validateSizeAndThrowIfError(
+  public static Image validateSizeAndThrowIfError(
       Image image, int expectedWidth, int expectedHeight) {
 
     final String errorMessageFormat = "expected image %s <%s>, but got <%s>.";
@@ -26,10 +26,12 @@ public final class ImageValidator {
     if (!errorMessages.isEmpty()) {
       throw new IllegalArgumentException(String.join(" ", errorMessages));
     }
+
+    return image;
   }
 
-  public static void validateSizeAndThrowIfError(Image image, int length) {
-    validateSizeAndThrowIfError(image, length, length);
+  public static Image validateSizeAndThrowIfError(Image image, int length) {
+    return validateSizeAndThrowIfError(image, length, length);
   }
 
   private ImageValidator() {}
