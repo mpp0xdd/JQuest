@@ -1,13 +1,13 @@
-package jquest.screen;
+package jquest.animation;
 
 import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
-class Animation {
+public class Animation {
 
   @FunctionalInterface
-  interface Frame {
+  public interface Frame {
     void next();
   }
 
