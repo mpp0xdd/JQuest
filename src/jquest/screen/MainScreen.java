@@ -8,7 +8,7 @@ import jglib.component.GameScreen;
 import jglib.util.model.Keystroke;
 import jquest.animation.Animation;
 import jquest.animation.AnimationName;
-import jquest.animation.AnimationRegistry;
+import jquest.animation.AnimationScheduler;
 import jquest.spec.chara.RpgChara;
 import jquest.spec.command.RpgCharaRandomWalkCommand;
 import jquest.spec.command.RpgCommand;
@@ -28,7 +28,7 @@ public class MainScreen extends GameScreen {
   private Keystroke dKey = Keystroke.RELEASED;
 
   private RpgScene rpgScene;
-  private AnimationRegistry<MainScreenAnimationName> animationRegistry;
+  private AnimationScheduler<MainScreenAnimationName> animationScheduler;
 
   public MainScreen(RpgScene rpgScene) {
     this.rpgScene = Objects.requireNonNull(rpgScene);
@@ -48,22 +48,22 @@ public class MainScreen extends GameScreen {
         });
     setFocusable(true);
 
-    animationRegistry = new AnimationRegistry<>(MainScreenAnimationName.class);
-    animationRegistry.register(
+    animationScheduler = new AnimationScheduler<>(MainScreenAnimationName.class);
+    animationScheduler.register(
         MainScreenAnimationName.MAIN_CHARA_FOOT_STAMPING,
         new Animation(
             () -> {
               rpgScene.mainChara().foot();
               repaint();
             }));
-    animationRegistry.register(
+    animationScheduler.register(
         MainScreenAnimationName.NON_PLAYER_CHARA_FOOT_STAMPING,
         new Animation(
             () -> {
               rpgScene.nonPlayerCharas().forEach(RpgChara::foot);
               repaint();
             }));
-    animationRegistry.register(
+    animationScheduler.register(
         MainScreenAnimationName.NON_PLAYER_CHARA_WALKING,
         new Animation(
             () -> {
@@ -73,10 +73,10 @@ public class MainScreen extends GameScreen {
               repaint();
             }));
 
-    animationRegistry.scheduleAnimation(MainScreenAnimationName.MAIN_CHARA_FOOT_STAMPING, 0, 300L);
-    animationRegistry.scheduleAnimation(
+    animationScheduler.scheduleAnimation(MainScreenAnimationName.MAIN_CHARA_FOOT_STAMPING, 0, 300L);
+    animationScheduler.scheduleAnimation(
         MainScreenAnimationName.NON_PLAYER_CHARA_FOOT_STAMPING, 30L, 300L);
-    animationRegistry.scheduleAnimation(
+    animationScheduler.scheduleAnimation(
         MainScreenAnimationName.NON_PLAYER_CHARA_WALKING, 30L, 300L);
   }
 

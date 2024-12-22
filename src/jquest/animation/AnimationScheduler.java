@@ -4,11 +4,11 @@ import java.util.EnumMap;
 import java.util.Objects;
 import java.util.Optional;
 
-public final class AnimationRegistry<N extends Enum<N> & AnimationName> {
+public final class AnimationScheduler<N extends Enum<N> & AnimationName> {
 
   private final EnumMap<N, Animation> animationRegistry;
 
-  public AnimationRegistry(Class<N> clazz) {
+  public AnimationScheduler(Class<N> clazz) {
     animationRegistry = new EnumMap<>(clazz);
   }
 
