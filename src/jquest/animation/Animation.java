@@ -12,38 +12,44 @@ public final class Animation {
   private long period;
   private TimerTask animation;
 
+  private AnimationState state;
+
   public Animation(Frame frame) {
     this.frame = Objects.requireNonNull(frame);
 
     scheduler = new Timer();
-    period = -1L;
+    period = 0L;
     animation = null;
+
+    state = AnimationState.NEW;
   }
 
-  public boolean isPlaying() {
-    return Objects.nonNull(animation);
+  public boolean nowPlaying() {
+    return state == AnimationState.NOW_PLAYING;
   }
 
   public boolean onPause() {
-    return !isPlaying() && period >= 0;
+    return state == AnimationState.ON_PAUSE;
   }
 
   void schedule(long delay, long period) {
-    throwIfIsPlaying();
-    prepareAnimation();
+    state = state.play();
 
+    prepareAnimation();
     this.period = period;
     startAnimation(delay);
   }
 
   void pause() {
-    throwIfOnPause();
+    state = state.pause();
+
     animation.cancel();
     animation = null;
   }
 
   void resume() {
-    throwIfNotOnPause();
+    state = state.resume();
+
     prepareAnimation();
     startAnimation(0);
   }
@@ -60,29 +66,5 @@ public final class Animation {
 
   private void startAnimation(long delay) {
     scheduler.schedule(animation, delay, period);
-  }
-
-  private void throwIfIsPlaying() {
-    if (isPlaying()) {
-      throw new IllegalStateException("Animation is playing");
-    }
-  }
-
-  private void throwIfIsNotPlaying() {
-    if (!isPlaying()) {
-      throw new IllegalStateException("Animation is not playing");
-    }
-  }
-
-  private void throwIfOnPause() {
-    if (onPause()) {
-      throw new IllegalStateException("Animation is not on pause");
-    }
-  }
-
-  private void throwIfNotOnPause() {
-    if (!onPause()) {
-      throw new IllegalStateException("Animation is not on pause");
-    }
   }
 }
