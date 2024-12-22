@@ -4,7 +4,7 @@ import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Animation {
+public final class Animation {
 
   @FunctionalInterface
   public interface Frame {
@@ -33,7 +33,7 @@ public class Animation {
     return !isPlaying() && period >= 0;
   }
 
-  public void schedule(long delay, long period) {
+  void schedule(long delay, long period) {
     throwIfIsPlaying();
     prepareAnimation();
 
@@ -41,13 +41,13 @@ public class Animation {
     startAnimation(delay);
   }
 
-  public void pause() {
+  void pause() {
     throwIfOnPause();
     animation.cancel();
     animation = null;
   }
 
-  public void resume() {
+  void resume() {
     throwIfNotOnPause();
     prepareAnimation();
     startAnimation(0);
