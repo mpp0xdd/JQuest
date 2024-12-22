@@ -6,11 +6,6 @@ import java.util.TimerTask;
 
 public final class Animation {
 
-  @FunctionalInterface
-  public interface Frame {
-    void next();
-  }
-
   private final Frame frame;
 
   private final Timer scheduler;
