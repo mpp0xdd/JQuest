@@ -30,6 +30,10 @@ public interface RpgMap extends Cellular, Rectangular {
     return new Castle();
   }
 
+  RpgMapCamera camera();
+
+  void setCamera(RpgMapCamera camera);
+
   RpgChara mainChara();
 
   void setMainChara(RpgChara chara);

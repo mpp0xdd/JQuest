@@ -19,12 +19,12 @@ abstract class RpgMapBase implements RpgMap {
 
     @Override
     public ChipLocation originChipLocation() {
-      int originX = width() / 2 - mainChara().location().coordinate().x();
+      int originX = width() / 2 - camera().location().coordinate().x();
       originX = Math.min(originX, 0);
       originX = Math.max(originX, width() - RpgMapBase.this.width());
       originX = Math.abs(originX);
 
-      int originY = height() / 2 - mainChara().location().coordinate().y();
+      int originY = height() / 2 - camera().location().coordinate().y();
       originY = Math.min(originY, 0);
       originY = Math.max(originY, height() - RpgMapBase.this.height());
       originY = Math.abs(originY);
@@ -64,6 +64,7 @@ abstract class RpgMapBase implements RpgMap {
   }
 
   private final int x, y;
+  private RpgMapCamera camera;
   private RpgChara mainChara;
   private final List<RpgChara> nonPlayerCharas = new ArrayList<>();
   protected final Map<ChipCoordinate, MapChip> mapChips = new HashMap<>();
@@ -72,11 +73,22 @@ abstract class RpgMapBase implements RpgMap {
     this.x = x;
     this.y = y;
     this.mainChara = null;
+    this.camera = null;
     initialize();
   }
 
   public RpgMapBase() {
     this(0, 0);
+  }
+
+  @Override
+  public RpgMapCamera camera() {
+    return camera;
+  }
+
+  @Override
+  public void setCamera(RpgMapCamera camera) {
+    this.camera = camera;
   }
 
   @Override

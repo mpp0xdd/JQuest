@@ -15,6 +15,8 @@ public interface RpgScene extends SubGameScreen {
     rpgMap.setMainChara(RpgChara.heroOf(rpgMap, ChipCoordinate.at(1, 1)));
     rpgMap.addNonPlayerChara(RpgChara.kingOf(rpgMap, ChipCoordinate.at(5, 2)));
 
+    rpgMap.setCamera(rpgMap.mainChara());
+
     return new RpgSceneImpl(rpgMap);
   }
 

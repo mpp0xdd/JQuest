@@ -15,10 +15,12 @@ import jquest.spec.action.turn.UpDirectional;
 import jquest.spec.chip.Chip;
 import jquest.spec.chip.ChipCoordinate;
 import jquest.spec.map.RpgMap;
+import jquest.spec.map.RpgMapCamera;
 import jquest.spec.map.RpgMapConcernChip;
 
 public interface RpgChara
     extends RpgMapConcernChip,
+        RpgMapCamera,
         UpMovable,
         DownMovable,
         LeftMovable,
