@@ -75,9 +75,9 @@ public final class AnimationScheduler<N extends Enum<N> & AnimationName> {
     pausedAnimations.remove(name);
   }
 
-  private void pause(N name, SchedulableAnimation schedulableAnimation) {
+  private void pause(N name, SchedulableAnimation pausedAnimation) {
     removeScheduledAnimation(name);
-    pausedAnimations.put(name, schedulableAnimation);
+    pausedAnimations.put(name, pausedAnimation);
   }
 
   private Optional<SchedulableAnimation> scheduledAnimationOf(N name) {
