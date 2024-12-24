@@ -32,15 +32,24 @@ public final class AnimationScheduler<N extends Enum<N> & AnimationName> {
     return scheduledAnimationOf(name).isPresent();
   }
 
+  public boolean onPause(N name) {
+    return pausedAnimationOf(name).isPresent();
+  }
+
   public void scheduleAnimation(N name, long delay, long period) {
     if (alreadyScheduled(name)) {
       throw animationAlreadyScheduledException(name).get();
+    }
+
+    if (onPause(name)) {
+      throw animationOnPauseException(name).get();
     }
 
     SchedulableAnimation schedulableAnimation =
         animationOf(name)
             .map(animation -> new SchedulableAnimation(animation, period))
             .orElseThrow(animationUnregisteredException(name));
+
     schedule(name, schedulableAnimation, delay, period);
   }
 
@@ -64,15 +73,15 @@ public final class AnimationScheduler<N extends Enum<N> & AnimationName> {
   public void resumeAnimation(N name) {
     SchedulableAnimation pausedAnimation =
         pausedAnimationOf(name).orElseThrow(animationNotPausedException(name));
-    scheduleAnimation(name, 0, pausedAnimation.period());
     pausedAnimations.remove(name);
+
+    scheduleAnimation(name, 0, pausedAnimation.period());
   }
 
   private void schedule(
       N name, SchedulableAnimation schedulableAnimation, long delay, long period) {
     animationScheduler.schedule(schedulableAnimation, delay, period);
     scheduledAnimations.put(name, schedulableAnimation);
-    pausedAnimations.remove(name);
   }
 
   private void pause(N name, SchedulableAnimation pausedAnimation) {
@@ -90,6 +99,10 @@ public final class AnimationScheduler<N extends Enum<N> & AnimationName> {
 
   private Supplier<RuntimeException> animationAlreadyScheduledException(N name) {
     return () -> new IllegalArgumentException("Animation is already scheduled: " + name.name());
+  }
+
+  private Supplier<RuntimeException> animationOnPauseException(N name) {
+    return () -> new IllegalArgumentException("Animation is on pause: " + name.name());
   }
 
   private Supplier<RuntimeException> animationUnregisteredException(N name) {
