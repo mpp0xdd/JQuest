@@ -18,7 +18,5 @@ public class JQuest extends Game {
 
     window.switchGameScreen(screen);
     window.setVisible(true);
-
-    screen.startGameLoop();
   }
 }
