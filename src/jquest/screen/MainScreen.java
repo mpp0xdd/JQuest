@@ -1,11 +1,11 @@
 package jquest.screen;
 
 import java.awt.Graphics;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Objects;
 import jglib.component.SimpleGameScreen;
-import jglib.util.model.Keystroke;
+import jglib.util.model.Key;
+import jglib.util.model.Keyboard;
 import jquest.animation.Animation;
 import jquest.animation.AnimationName;
 import jquest.animation.AnimationScheduler;
@@ -23,11 +23,26 @@ public class MainScreen extends SimpleGameScreen {
     NON_PLAYER_CHARA_WALKING,
   }
 
-  private volatile Keystroke wKey = Keystroke.RELEASED;
-  private volatile Keystroke sKey = Keystroke.RELEASED;
-  private volatile Keystroke aKey = Keystroke.RELEASED;
-  private volatile Keystroke dKey = Keystroke.RELEASED;
+  private enum OperationKey implements Key {
+    W(KeyEvent.VK_W),
+    S(KeyEvent.VK_S),
+    A(KeyEvent.VK_A),
+    D(KeyEvent.VK_D),
+    ;
 
+    private final int code;
+
+    private OperationKey(int code) {
+      this.code = code;
+    }
+
+    @Override
+    public int code() {
+      return code;
+    }
+  }
+
+  private Keyboard<OperationKey> keyboard;
   private RpgScene rpgScene;
   private AnimationScheduler<MainScreenAnimationName> animationScheduler;
 
@@ -35,18 +50,8 @@ public class MainScreen extends SimpleGameScreen {
     this.rpgScene = Objects.requireNonNull(rpgScene);
     setScreenSize(rpgScene.width(), rpgScene.height());
 
-    addKeyListener(
-        new KeyAdapter() {
-          @Override
-          public void keyPressed(KeyEvent e) {
-            switch (e.getKeyCode()) {
-              case KeyEvent.VK_W -> wKey = Keystroke.PRESSED;
-              case KeyEvent.VK_S -> sKey = Keystroke.PRESSED;
-              case KeyEvent.VK_A -> aKey = Keystroke.PRESSED;
-              case KeyEvent.VK_D -> dKey = Keystroke.PRESSED;
-            }
-          }
-        });
+    keyboard = Keyboard.create(OperationKey.values());
+    addKeyListener(keyboard.asKeyPressListener());
     setFocusable(true);
 
     animationScheduler = new AnimationScheduler<>(MainScreenAnimationName.class);
@@ -54,18 +59,18 @@ public class MainScreen extends SimpleGameScreen {
         MainScreenAnimationName.KEYSTROKE_PROCESSING_ANIMATION,
         new Animation(
             () -> {
-              if (wKey.isPressed()) {
+              if (keyboard.isPressed(OperationKey.W)) {
                 rpgScene.mainChara().moveUp();
-                wKey = Keystroke.RELEASED;
-              } else if (sKey.isPressed()) {
+                keyboard.release(OperationKey.W);
+              } else if (keyboard.isPressed(OperationKey.S)) {
                 rpgScene.mainChara().moveDown();
-                sKey = Keystroke.RELEASED;
-              } else if (aKey.isPressed()) {
+                keyboard.release(OperationKey.S);
+              } else if (keyboard.isPressed(OperationKey.A)) {
                 rpgScene.mainChara().moveLeft();
-                aKey = Keystroke.RELEASED;
-              } else if (dKey.isPressed()) {
+                keyboard.release(OperationKey.A);
+              } else if (keyboard.isPressed(OperationKey.D)) {
                 rpgScene.mainChara().moveRight();
-                dKey = Keystroke.RELEASED;
+                keyboard.release(OperationKey.D);
               }
               repaint();
             }));
