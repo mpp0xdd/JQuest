@@ -59,18 +59,14 @@ public class MainScreen extends SimpleGameScreen {
         MainScreenAnimationName.KEYSTROKE_PROCESSING_ANIMATION,
         new Animation(
             () -> {
-              if (keyboard.isPressed(OperationKey.W)) {
+              if (keyboard.release(OperationKey.W)) {
                 rpgScene.mainChara().moveUp();
-                keyboard.release(OperationKey.W);
-              } else if (keyboard.isPressed(OperationKey.S)) {
+              } else if (keyboard.release(OperationKey.S)) {
                 rpgScene.mainChara().moveDown();
-                keyboard.release(OperationKey.S);
-              } else if (keyboard.isPressed(OperationKey.A)) {
+              } else if (keyboard.release(OperationKey.A)) {
                 rpgScene.mainChara().moveLeft();
-                keyboard.release(OperationKey.A);
-              } else if (keyboard.isPressed(OperationKey.D)) {
+              } else if (keyboard.release(OperationKey.D)) {
                 rpgScene.mainChara().moveRight();
-                keyboard.release(OperationKey.D);
               }
               repaint();
             }));
