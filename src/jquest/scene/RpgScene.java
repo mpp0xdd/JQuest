@@ -1,4 +1,4 @@
-package jquest.spec.scene;
+package jquest.scene;
 
 import java.awt.Graphics;
 import java.util.List;

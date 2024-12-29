@@ -1,4 +1,4 @@
-package jquest.spec.scene;
+package jquest.scene;
 
 import java.util.List;
 import jquest.spec.chara.RpgChara;

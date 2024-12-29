@@ -9,10 +9,10 @@ import jglib.util.model.Keyboard;
 import jquest.animation.Animation;
 import jquest.animation.AnimationName;
 import jquest.animation.AnimationScheduler;
+import jquest.scene.RpgScene;
 import jquest.spec.chara.RpgChara;
 import jquest.spec.command.RpgCharaRandomWalkCommand;
 import jquest.spec.command.RpgCommand;
-import jquest.spec.scene.RpgScene;
 
 public class MainScreen extends SimpleGameScreen {
 

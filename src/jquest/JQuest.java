@@ -2,8 +2,8 @@ package jquest;
 
 import jglib.component.GameWindow;
 import jglib.core.Game;
+import jquest.scene.RpgScene;
 import jquest.screen.MainScreen;
-import jquest.spec.scene.RpgScene;
 
 public class JQuest extends Game {
 
