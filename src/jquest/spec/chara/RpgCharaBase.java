@@ -102,6 +102,6 @@ abstract class RpgCharaBase extends RpgMapConcernChipBase implements RpgChara {
         || rpgMap().allCharas().stream()
             .filter(Predicate.not(this::equals))
             .map(RpgChara::location)
-            .anyMatch(npcLocation -> npcLocation.intersects(location));
+            .anyMatch(location::intersects);
   }
 }
