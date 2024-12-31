@@ -11,4 +11,10 @@ public interface RpgMessage {
   }
 
   List<String> lines();
+
+  @Override
+  int hashCode();
+
+  @Override
+  boolean equals(Object obj);
 }
