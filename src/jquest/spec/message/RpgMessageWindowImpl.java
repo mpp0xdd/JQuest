@@ -10,7 +10,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Objects;
-import jglib.util.StringDrawer;
 import jquest.common.Coordinate;
 import jquest.common.Dimension;
 
@@ -78,9 +77,36 @@ class RpgMessageWindowImpl implements RpgMessageWindow {
 
     FontMetrics fontMetrics = g.getFontMetrics();
     windowRect.grow(-5, -5);
+
+    RpgMessageChunks messageChunks =
+        new RpgMessageChunks(
+            chunkMessageLines(
+                formatMessageLines(fontMetrics, windowRect.width), fontMetrics, windowRect.height));
+
     g2.setColor(Color.WHITE);
-    StringDrawer.LEFT.draw(
-        g2, windowRect.x, windowRect.y, formatMessageLines(fontMetrics, windowRect.width));
+    messageChunks.draw(g2, windowRect.x, windowRect.y);
+  }
+
+  private List<List<String>> chunkMessageLines(
+      List<String> messageLines, FontMetrics fontMetrics, int maxHeight) {
+    int height = fontMetrics.getMaxDescent() + fontMetrics.getMaxAscent();
+    int chunkSize = maxHeight / height;
+
+    List<List<String>> result = new ArrayList<>();
+    List<String> chunk = new ArrayList<>();
+    for (String messageLine : messageLines) {
+      if (chunk.size() < chunkSize) {
+        chunk.add(messageLine);
+        continue;
+      }
+      result.add(List.copyOf(chunk));
+      chunk.clear();
+    }
+    if (!chunk.isEmpty()) {
+      result.add(List.copyOf(chunk));
+    }
+
+    return result;
   }
 
   private List<String> formatMessageLines(FontMetrics fontMetrics, int maxWidth) {
