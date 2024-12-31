@@ -22,6 +22,11 @@ class RpgMessageImpl implements RpgMessage {
   }
 
   @Override
+  public boolean isEmpty() {
+    return lines().isEmpty() || lines().stream().allMatch(String::isEmpty);
+  }
+
+  @Override
   public int hashCode() {
     return Objects.hash(lines);
   }

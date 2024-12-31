@@ -12,6 +12,8 @@ public interface RpgMessage {
 
   List<String> lines();
 
+  boolean isEmpty();
+
   @Override
   int hashCode();
 

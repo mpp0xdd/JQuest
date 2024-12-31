@@ -11,4 +11,9 @@ class NullRpgMessage implements RpgMessage {
   public List<String> lines() {
     return Collections.emptyList();
   }
+
+  @Override
+  public boolean isEmpty() {
+    return true;
+  }
 }
