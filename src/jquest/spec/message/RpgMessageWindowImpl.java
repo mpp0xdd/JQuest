@@ -89,12 +89,13 @@ class RpgMessageWindowImpl implements RpgMessageWindow {
             .orElseThrow();
 
     windowRect.grow(-5, -5);
-    messageRect.setFrame(windowRect.getX(), windowRect.getY(), messageRect.getWidth(), messageRect.getHeight());
+    messageRect.setFrame(
+        windowRect.getX(), windowRect.getY(), messageRect.getWidth(), messageRect.getHeight());
     if (!windowRect.contains(messageRect)) {
       throw new IllegalStateException();
     }
 
     g2.setColor(Color.WHITE);
-    StringDrawer.LEFT.draw(g2, windowRect.x, windowRect.y, messageLines.toArray(new String[] {}));
+    StringDrawer.LEFT.draw(g2, windowRect.x, windowRect.y, messageLines);
   }
 }
