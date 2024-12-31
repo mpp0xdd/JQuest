@@ -4,6 +4,8 @@ import java.util.List;
 
 public interface RpgMessage {
 
+  RpgMessage NULL = new NullRpgMessage();
+
   public static RpgMessage of(String... lines) {
     return new RpgMessageImpl(lines);
   }
