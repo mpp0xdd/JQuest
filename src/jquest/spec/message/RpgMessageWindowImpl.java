@@ -70,10 +70,11 @@ class RpgMessageWindowImpl implements RpgMessageWindow {
     g2.setColor(Color.BLACK);
     g2.fill(windowRect);
 
-    List<String> messageLines = message().lines();
-    if (messageLines.isEmpty()) {
+    if (message().isEmpty()) {
       return;
     }
+
+    List<String> messageLines = message().lines();
 
     FontMetrics fontMetrics = g.getFontMetrics();
 
