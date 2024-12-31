@@ -25,7 +25,8 @@ class RpgMessageImpl implements RpgMessage {
         lines.stream().map(LINE_SEPARATOR::splitAsStream).anyMatch(line -> line.count() > 1);
 
     if (anyLineContainslineSeparator) {
-      throw new AssertionError(Arrays.toString(lines.toArray()));
+      throw new IllegalArgumentException(
+          "Messages cannot contain newline characters: " + Arrays.toString(lines.toArray()));
     }
   }
 }
