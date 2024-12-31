@@ -6,10 +6,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import jglib.util.StringDrawer;
 import jquest.common.Coordinate;
 import jquest.common.Dimension;
@@ -24,16 +22,17 @@ class RpgMessageWindowImpl implements RpgMessageWindow {
   public RpgMessageWindowImpl(Coordinate coordinate, Dimension dimension) {
     this.coordinate = Objects.requireNonNull(coordinate);
     this.dimension = Objects.requireNonNull(dimension);
+    this.message = RpgMessage.NULL;
   }
 
   @Override
-  public Optional<RpgMessage> message() {
-    return Optional.ofNullable(message);
+  public RpgMessage message() {
+    return message;
   }
 
   @Override
   public void setMessage(RpgMessage message) {
-    this.message = message;
+    this.message = Objects.requireNonNull(message);
   }
 
   @Override
@@ -71,7 +70,7 @@ class RpgMessageWindowImpl implements RpgMessageWindow {
     g2.setColor(Color.BLACK);
     g2.fill(windowRect);
 
-    List<String> messageLines = message().map(RpgMessage::lines).orElse(Collections.emptyList());
+    List<String> messageLines = message().lines();
     if (messageLines.isEmpty()) {
       return;
     }

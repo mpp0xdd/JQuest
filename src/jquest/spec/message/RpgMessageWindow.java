@@ -1,6 +1,5 @@
 package jquest.spec.message;
 
-import java.util.Optional;
 import jglib.util.spec.Drawable;
 import jglib.util.spec.Rectangular;
 import jquest.common.Coordinate;
@@ -12,7 +11,7 @@ public interface RpgMessageWindow extends Rectangular, Drawable {
     return new RpgMessageWindowImpl(coordinate, dimension);
   }
 
-  Optional<RpgMessage> message();
+  RpgMessage message();
 
   void setMessage(RpgMessage message);
 }
