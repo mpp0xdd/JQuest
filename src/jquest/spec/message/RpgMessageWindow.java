@@ -14,4 +14,6 @@ public interface RpgMessageWindow extends Rectangular, Drawable {
   RpgMessage message();
 
   void setMessage(RpgMessage message);
+
+  void nextMessage();
 }

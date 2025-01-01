@@ -86,4 +86,9 @@ class RpgMessageWindowImpl implements RpgMessageWindow {
     g2.setColor(Color.WHITE);
     messageChunks.draw(g2, windowRect.x, windowRect.y);
   }
+
+  @Override
+  public void nextMessage() {
+    messageChunks.next();
+  }
 }
