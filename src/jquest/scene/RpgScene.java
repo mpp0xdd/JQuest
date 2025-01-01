@@ -3,7 +3,7 @@ package jquest.scene;
 import java.awt.Graphics;
 import java.util.List;
 import java.util.Optional;
-import jglib.component.SubGameScreen;
+import jglib.screen.SubGameScreen;
 import jquest.common.Coordinate;
 import jquest.common.Dimension;
 import jquest.spec.chara.RpgChara;

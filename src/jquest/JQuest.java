@@ -1,7 +1,7 @@
 package jquest;
 
-import jglib.component.GameWindow;
 import jglib.core.Game;
+import jglib.screen.GameWindow;
 import jquest.scene.RpgScene;
 import jquest.screen.MainScreen;
 
