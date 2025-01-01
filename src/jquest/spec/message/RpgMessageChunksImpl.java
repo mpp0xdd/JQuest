@@ -9,9 +9,9 @@ import java.util.ListIterator;
 import jglib.util.StringDrawer;
 import jquest.common.Dimension;
 
-class RpgMessageChunks {
+class RpgMessageChunksImpl {
 
-  public static RpgMessageChunks chunk(
+  public static RpgMessageChunksImpl chunk(
       RpgMessage message, FontMetrics fontMetrics, Dimension dimension) {
     int height = fontMetrics.getMaxDescent() + fontMetrics.getMaxAscent();
     int chunkSize = dimension.height() / height;
@@ -30,7 +30,7 @@ class RpgMessageChunks {
       chunks.add(List.copyOf(chunk));
     }
 
-    return new RpgMessageChunks(chunks);
+    return new RpgMessageChunksImpl(chunks);
   }
 
   private static List<String> format(RpgMessage message, FontMetrics fontMetrics, int maxWidth) {
@@ -73,7 +73,7 @@ class RpgMessageChunks {
   private final List<List<String>> chunks;
   private int index;
 
-  private RpgMessageChunks(List<List<String>> chunks) {
+  private RpgMessageChunksImpl(List<List<String>> chunks) {
     this.chunks = chunks;
     this.index = 0;
   }
