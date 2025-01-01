@@ -15,11 +15,13 @@ class RpgMessageWindowImpl implements RpgMessageWindow {
   private final Dimension dimension;
 
   private RpgMessage message;
+  private RpgMessageChunks messageChunks;
 
   public RpgMessageWindowImpl(Coordinate coordinate, Dimension dimension) {
     this.coordinate = Objects.requireNonNull(coordinate);
     this.dimension = Objects.requireNonNull(dimension);
     this.message = RpgMessage.NULL;
+    this.messageChunks = RpgMessageChunks.NULL;
   }
 
   @Override
@@ -30,6 +32,7 @@ class RpgMessageWindowImpl implements RpgMessageWindow {
   @Override
   public void setMessage(RpgMessage message) {
     this.message = Objects.requireNonNull(message);
+    this.messageChunks = RpgMessageChunks.NULL;
   }
 
   @Override
@@ -74,9 +77,11 @@ class RpgMessageWindowImpl implements RpgMessageWindow {
     FontMetrics fontMetrics = g.getFontMetrics();
     windowRect.grow(-5, -5);
 
-    RpgMessageChunks messageChunks =
-        RpgMessageChunks.chunk(
-            message, fontMetrics, Dimension.of(windowRect.width, windowRect.height));
+    if (messageChunks.isEmpty()) {
+      messageChunks =
+          RpgMessageChunks.chunk(
+              message, fontMetrics, Dimension.of(windowRect.width, windowRect.height));
+    }
 
     g2.setColor(Color.WHITE);
     messageChunks.draw(g2, windowRect.x, windowRect.y);

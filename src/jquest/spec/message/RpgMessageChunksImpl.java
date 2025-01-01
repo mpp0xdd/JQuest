@@ -28,4 +28,9 @@ class RpgMessageChunksImpl implements RpgMessageChunks {
   public void next() {
     if (hasNext()) index++;
   }
+
+  @Override
+  public boolean isEmpty() {
+    return false;
+  }
 }

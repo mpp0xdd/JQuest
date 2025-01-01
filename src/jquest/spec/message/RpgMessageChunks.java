@@ -76,4 +76,6 @@ interface RpgMessageChunks {
   boolean hasNext();
 
   void next();
+
+  boolean isEmpty();
 }
