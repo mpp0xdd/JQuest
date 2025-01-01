@@ -30,6 +30,7 @@ interface RpgMessageChunks {
       }
       chunks.add(List.copyOf(chunk));
       chunk.clear();
+      chunk.add(line);
     }
     if (!chunk.isEmpty()) {
       chunks.add(List.copyOf(chunk));
