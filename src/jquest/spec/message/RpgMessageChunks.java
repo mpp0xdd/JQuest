@@ -15,7 +15,7 @@ interface RpgMessageChunks {
   public static RpgMessageChunks chunk(
       RpgMessage message, FontMetrics fontMetrics, Dimension dimension) {
     if (message.isEmpty()) {
-      throw new IllegalArgumentException("Message is empty");
+      return NULL;
     }
 
     int height = fontMetrics.getMaxDescent() + fontMetrics.getMaxAscent();
