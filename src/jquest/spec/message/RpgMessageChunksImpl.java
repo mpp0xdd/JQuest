@@ -9,9 +9,9 @@ import java.util.ListIterator;
 import jglib.util.StringDrawer;
 import jquest.common.Dimension;
 
-class RpgMessageChunksImpl {
+class RpgMessageChunksImpl implements RpgMessageChunks {
 
-  public static RpgMessageChunksImpl chunk(
+  public static RpgMessageChunks chunk(
       RpgMessage message, FontMetrics fontMetrics, Dimension dimension) {
     int height = fontMetrics.getMaxDescent() + fontMetrics.getMaxAscent();
     int chunkSize = dimension.height() / height;
@@ -78,14 +78,17 @@ class RpgMessageChunksImpl {
     this.index = 0;
   }
 
+  @Override
   public void draw(Graphics g, int x, int y) {
     StringDrawer.LEFT.draw(g, x, y, chunks.get(index));
   }
 
+  @Override
   public boolean hasNext() {
     return index + 1 < chunks.size();
   }
 
+  @Override
   public void next() {
     if (hasNext()) index++;
   }
