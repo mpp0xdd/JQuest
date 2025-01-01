@@ -75,7 +75,7 @@ class RpgMessageWindowImpl implements RpgMessageWindow {
     windowRect.grow(-5, -5);
 
     RpgMessageChunks messageChunks =
-        RpgMessageChunksImpl.chunk(
+        RpgMessageChunks.chunk(
             message, fontMetrics, Dimension.of(windowRect.width, windowRect.height));
 
     g2.setColor(Color.WHITE);
