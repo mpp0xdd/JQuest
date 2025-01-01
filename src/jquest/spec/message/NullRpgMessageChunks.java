@@ -13,7 +13,9 @@ class NullRpgMessageChunks implements RpgMessageChunks {
   }
 
   @Override
-  public void next() {}
+  public boolean next() {
+    return false;
+  }
 
   @Override
   public boolean isEmpty() {

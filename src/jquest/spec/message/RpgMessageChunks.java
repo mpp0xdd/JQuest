@@ -80,7 +80,7 @@ interface RpgMessageChunks {
 
   boolean hasNext();
 
-  void next();
+  boolean next();
 
   boolean isEmpty();
 }
