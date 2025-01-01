@@ -10,6 +10,8 @@ import jquest.common.Dimension;
 
 interface RpgMessageChunks {
 
+  RpgMessageChunks NULL = new NullRpgMessageChunks();
+
   public static RpgMessageChunks chunk(
       RpgMessage message, FontMetrics fontMetrics, Dimension dimension) {
     int height = fontMetrics.getMaxDescent() + fontMetrics.getMaxAscent();
