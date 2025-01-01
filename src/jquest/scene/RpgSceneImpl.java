@@ -42,6 +42,11 @@ class RpgSceneImpl implements RpgScene {
   }
 
   @Override
+  public void closeMessageWindow() {
+    messageWindow = null;
+  }
+
+  @Override
   public Optional<RpgMessageWindow> messageWindow() {
     return Optional.ofNullable(messageWindow);
   }

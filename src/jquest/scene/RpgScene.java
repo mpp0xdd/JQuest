@@ -33,6 +33,8 @@ public interface RpgScene extends SubGameScreen {
 
   void showMessageWindow(Coordinate coordinate, Dimension dimension, RpgMessage message);
 
+  void closeMessageWindow();
+
   Optional<RpgMessageWindow> messageWindow();
 
   @Override
