@@ -88,7 +88,7 @@ class RpgMessageWindowImpl implements RpgMessageWindow {
   }
 
   @Override
-  public void nextMessage() {
-    messageChunks.next();
+  public boolean nextMessage() {
+    return messageChunks.next();
   }
 }
