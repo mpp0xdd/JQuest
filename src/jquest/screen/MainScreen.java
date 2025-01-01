@@ -9,10 +9,14 @@ import jglib.util.model.Keyboard;
 import jquest.animation.Animation;
 import jquest.animation.AnimationName;
 import jquest.animation.AnimationScheduler;
+import jquest.common.Coordinate;
+import jquest.common.Dimension;
 import jquest.scene.RpgScene;
 import jquest.spec.chara.RpgChara;
 import jquest.spec.command.RpgCharaRandomWalkCommand;
 import jquest.spec.command.RpgCommand;
+import jquest.spec.message.RpgMessage;
+import jquest.spec.message.RpgMessageWindow;
 
 public class MainScreen extends SimpleGameScreen {
 
@@ -28,6 +32,7 @@ public class MainScreen extends SimpleGameScreen {
     S(KeyEvent.VK_S),
     A(KeyEvent.VK_A),
     D(KeyEvent.VK_D),
+    SPACE(KeyEvent.VK_SPACE),
     ;
 
     private final int code;
@@ -67,6 +72,26 @@ public class MainScreen extends SimpleGameScreen {
                 rpgScene.mainChara().moveLeft();
               } else if (keyboard.release(OperationKey.D)) {
                 rpgScene.mainChara().moveRight();
+              } else if (keyboard.release(OperationKey.SPACE)) {
+                rpgScene
+                    .messageWindow()
+                    .ifPresentOrElse(
+                        RpgMessageWindow::nextMessage,
+                        () ->
+                            rpgScene.showMessageWindow(
+                                Coordinate.at(10, 140),
+                                Dimension.of(300, 100),
+                                RpgMessage.of(
+                                    "いろはにほへと　ちりぬるを",
+                                    "わかよたれそ　　つねならむ",
+                                    "うゐのおくやま　けふこえて",
+                                    "あさきゆめみし　ゑひもせす",
+                                    "色は匂へど　散りぬるを",
+                                    "我が世誰ぞ　常ならむ",
+                                    "有為の奥山　今日越えて",
+                                    "浅き夢見し　酔ひもせず",
+                                    "The quick brown fox jumps over the lazy dog",
+                                    "寿限無、寿限無五劫の擦り切れ海砂利水魚の水行末雲来末風来末食う寝る処に住む処やぶら小路の藪柑子パイポパイポパイポのシューリンガンシューリンガンのグーリンダイグーリンダイのポンポコピーのポンポコナーの長久命の長助")));
               }
               repaint();
             }));
