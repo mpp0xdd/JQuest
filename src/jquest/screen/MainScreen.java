@@ -16,7 +16,6 @@ import jquest.spec.chara.RpgChara;
 import jquest.spec.command.RpgCharaRandomWalkCommand;
 import jquest.spec.command.RpgCommand;
 import jquest.spec.message.RpgMessage;
-import jquest.spec.message.RpgMessageWindow;
 
 public class MainScreen extends SimpleGameScreen {
 
@@ -76,7 +75,11 @@ public class MainScreen extends SimpleGameScreen {
                 rpgScene
                     .messageWindow()
                     .ifPresentOrElse(
-                        RpgMessageWindow::nextMessage,
+                        window -> {
+                          if (!window.nextMessage()) {
+                            rpgScene.closeMessageWindow();
+                          }
+                        },
                         () ->
                             rpgScene.showMessageWindow(
                                 Coordinate.at(10, 140),
