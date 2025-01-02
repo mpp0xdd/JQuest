@@ -20,6 +20,8 @@ public final class StringValidator {
     public static Predicate<String> notContainLineSeparator() {
       return StringHelper::notContainLineSeparator;
     }
+
+    private StringPredicates() {}
   }
 
   private StringValidator() {}
