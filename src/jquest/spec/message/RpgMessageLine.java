@@ -11,4 +11,13 @@ public interface RpgMessageLine {
   String line();
 
   boolean isEmpty();
+
+  @Override
+  int hashCode();
+
+  @Override
+  boolean equals(Object obj);
+
+  @Override
+  String toString();
 }
