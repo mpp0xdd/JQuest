@@ -14,13 +14,8 @@ class RpgMessageLineImpl implements RpgMessageLine {
   }
 
   @Override
-  public String line() {
-    return line;
-  }
-
-  @Override
   public boolean isEmpty() {
-    return line().isEmpty();
+    return line.isEmpty();
   }
 
   @Override

@@ -45,7 +45,7 @@ interface RpgMessageChunks {
     ListIterator<RpgMessageLine> lines = message.lines().listIterator(message.lines().size());
     while (lines.hasPrevious()) {
       RpgMessageLine line = lines.previous();
-      result.add(split(line.line(), fontMetrics, maxWidth));
+      result.add(split(line.toString(), fontMetrics, maxWidth));
     }
 
     Collections.reverse(result);

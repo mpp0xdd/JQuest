@@ -8,8 +8,6 @@ public interface RpgMessageLine {
     return new RpgMessageLineImpl(line);
   }
 
-  String line();
-
   boolean isEmpty();
 
   @Override
