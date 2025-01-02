@@ -8,6 +8,7 @@ import java.awt.Rectangle;
 import java.util.Objects;
 import jquest.common.Coordinate;
 import jquest.common.Dimension;
+import jquest.spec.message.engine.RpgMessageChunks;
 
 class RpgMessageWindowImpl implements RpgMessageWindow {
 

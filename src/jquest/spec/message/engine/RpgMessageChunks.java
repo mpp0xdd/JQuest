@@ -1,4 +1,4 @@
-package jquest.spec.message;
+package jquest.spec.message.engine;
 
 import java.awt.FontMetrics;
 import java.awt.Graphics;
@@ -7,8 +7,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
 import jquest.common.Dimension;
+import jquest.spec.message.RpgMessage;
+import jquest.spec.message.RpgMessageLine;
 
-interface RpgMessageChunks {
+public interface RpgMessageChunks {
 
   RpgMessageChunks NULL = new NullRpgMessageChunks();
 

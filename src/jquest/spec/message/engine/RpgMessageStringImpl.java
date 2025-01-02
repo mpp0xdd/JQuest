@@ -1,4 +1,4 @@
-package jquest.spec.message;
+package jquest.spec.message.engine;
 
 import java.awt.Graphics;
 import java.util.List;
