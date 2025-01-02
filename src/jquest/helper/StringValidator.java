@@ -1,5 +1,6 @@
 package jquest.helper;
 
+import java.util.Objects;
 import java.util.function.Predicate;
 
 public final class StringValidator {
@@ -12,6 +13,10 @@ public final class StringValidator {
   }
 
   public static final class StringPredicates {
+
+    public static Predicate<String> nonNull() {
+      return Objects::nonNull;
+    }
 
     public static Predicate<String> containLineSeparator() {
       return StringHelper::containLineSeparator;
