@@ -42,10 +42,10 @@ interface RpgMessageChunks {
   private static List<String> format(RpgMessage message, FontMetrics fontMetrics, int maxWidth) {
     List<List<String>> result = new ArrayList<>();
 
-    ListIterator<String> lines = message.lines().listIterator(message.lines().size());
+    ListIterator<RpgMessageLine> lines = message.lines().listIterator(message.lines().size());
     while (lines.hasPrevious()) {
-      String line = lines.previous();
-      result.add(split(line, fontMetrics, maxWidth));
+      RpgMessageLine line = lines.previous();
+      result.add(split(line.line(), fontMetrics, maxWidth));
     }
 
     Collections.reverse(result);

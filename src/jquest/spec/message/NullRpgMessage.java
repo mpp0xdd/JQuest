@@ -8,7 +8,7 @@ class NullRpgMessage implements RpgMessage {
   public NullRpgMessage() {}
 
   @Override
-  public List<String> lines() {
+  public List<RpgMessageLine> lines() {
     return Collections.emptyList();
   }
 
