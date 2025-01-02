@@ -11,5 +11,16 @@ public final class StringValidator {
     throw new IllegalArgumentException(s);
   }
 
+  public static final class StringPredicates {
+
+    public static Predicate<String> containLineSeparator() {
+      return StringHelper::containLineSeparator;
+    }
+
+    public static Predicate<String> notContainLineSeparator() {
+      return StringHelper::notContainLineSeparator;
+    }
+  }
+
   private StringValidator() {}
 }
