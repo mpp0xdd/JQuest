@@ -10,7 +10,7 @@ import jquest.spec.chara.RpgChara;
 import jquest.spec.chip.ChipCoordinate;
 import jquest.spec.map.RpgMap;
 import jquest.spec.message.RpgMessage;
-import jquest.spec.message.RpgMessageWindow;
+import jquest.spec.message.window.RpgMessageWindow;
 
 public interface RpgScene extends SubGameScreen {
 

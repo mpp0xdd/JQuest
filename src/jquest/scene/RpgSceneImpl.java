@@ -7,7 +7,7 @@ import jquest.common.Dimension;
 import jquest.spec.chara.RpgChara;
 import jquest.spec.map.RpgMap;
 import jquest.spec.message.RpgMessage;
-import jquest.spec.message.RpgMessageWindow;
+import jquest.spec.message.window.RpgMessageWindow;
 
 class RpgSceneImpl implements RpgScene {
 
