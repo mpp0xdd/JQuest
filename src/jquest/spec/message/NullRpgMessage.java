@@ -5,8 +5,6 @@ import java.util.List;
 
 class NullRpgMessage implements RpgMessage {
 
-  public NullRpgMessage() {}
-
   @Override
   public List<RpgMessageLine> lines() {
     return Collections.emptyList();
