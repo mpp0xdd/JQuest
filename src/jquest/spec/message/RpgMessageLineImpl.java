@@ -3,6 +3,7 @@ package jquest.spec.message;
 import static jquest.helper.StringValidator.validateAndThrowIfError;
 import static jquest.helper.StringValidator.StringPredicates.nonNull;
 import static jquest.helper.StringValidator.StringPredicates.notContainLineSeparator;
+import java.util.List;
 import java.util.Objects;
 
 class RpgMessageLineImpl implements RpgMessageLine {
@@ -16,6 +17,11 @@ class RpgMessageLineImpl implements RpgMessageLine {
   @Override
   public boolean isEmpty() {
     return line.isEmpty();
+  }
+
+  @Override
+  public List<String> graphemeClusters() {
+    return List.of(line.split("\\b{g}"));
   }
 
   @Override
