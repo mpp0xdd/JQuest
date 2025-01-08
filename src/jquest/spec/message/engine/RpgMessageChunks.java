@@ -47,22 +47,22 @@ public interface RpgMessageChunks {
     ListIterator<RpgMessageLine> lines = message.lines().listIterator(message.lines().size());
     while (lines.hasPrevious()) {
       RpgMessageLine line = lines.previous();
-      result.add(split(line.toString(), fontMetrics, maxWidth));
+      result.add(split(line, fontMetrics, maxWidth));
     }
 
     Collections.reverse(result);
     return result.stream().flatMap(List::stream).toList();
   }
 
-  private static List<String> split(String line, FontMetrics fontMetrics, int maxWidth) {
-    if (fontMetrics.stringWidth(line) <= maxWidth) {
-      return List.of(line);
+  private static List<String> split(RpgMessageLine line, FontMetrics fontMetrics, int maxWidth) {
+    if (fontMetrics.stringWidth(line.toString()) <= maxWidth) {
+      return List.of(line.toString());
     }
 
     List<String> result = new ArrayList<>();
     StringBuilder buffer = new StringBuilder();
 
-    for (String s : line.split("\\b{g}")) {
+    for (String s : line.graphemeClusters()) {
       String split = buffer.toString();
       buffer.append(s);
       if (fontMetrics.stringWidth(buffer.toString()) > maxWidth) {
