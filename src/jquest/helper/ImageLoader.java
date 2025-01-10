@@ -4,7 +4,6 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import jglib.util.GameUtilities;
 
@@ -42,8 +41,7 @@ public final class ImageLoader {
   }
 
   private static URL getResource(Class<?> clazz, String name) {
-    return Objects.requireNonNull(
-        clazz.getResource(name), "Resource with given name not found:" + name);
+    return GameUtilities.getResource(clazz, name).orElseThrow();
   }
 
   private ImageLoader() {}
